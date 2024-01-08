@@ -161,12 +161,12 @@ form select {
                             <div class="form-group">
                                 <label for="tag" class="form-label">Add Your Tags</label>
                                 <!-- <div class="tag-container" id="tag-container"></div> -->
-                                <select name="tags">
-                                        <option value="option1" default>Choose your Tags</option>
-                                        <?php foreach($tags as $tg): ?>
-                                        <option value="<?= $tg['id'] ?>"><?= $tg['name'] ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
+                                <select name="tags[]" multiple>
+    <option value="option1" default>Choose your Tags</option>
+    <?php foreach($tags as $tg): ?>
+        <option value="<?= $tg['id'] ?>"><?= $tg['name'] ?></option>
+    <?php endforeach; ?>
+</select>
                             </div>
                             <div class="form-group">
                                 <div class="card">

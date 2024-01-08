@@ -44,7 +44,8 @@ public static function addTagsForWiki($wikiId, $tags)
     try {
         $conn = Database::getInstance()->getConnection();
 
-            $tagId = TagDAO::getTagIdByName($tags);
+        foreach ($tags as $tag) {
+            $tagId = TagDAO::getTagIdByName($tag);
 
             if ($tagId) {
                 $sql = "INSERT INTO `wiki_tag` (`wiki_id`, `tag_id`) VALUES (?, ?)";
@@ -53,11 +54,12 @@ public static function addTagsForWiki($wikiId, $tags)
                 $stmt->bindParam(2, $tagId);
                 $stmt->execute();
             }
-        
+        }
     } catch (\PDOException $e) {
         echo $e->getMessage();
     }
 }
+
 
 
     public static function getAllWikis(){
