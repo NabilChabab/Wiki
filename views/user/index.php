@@ -63,7 +63,7 @@
           </ul>
             </li>';
           } else {
-            echo '<li><a class="text-white" href="signup" style="margin-left:60%;">Sign up</a></li>';
+            echo '<li><a class="text-white" href="signin" style="margin-left:60%;">Sign In</a></li>';
           }
           ?>
         </ul>
@@ -123,7 +123,8 @@
         </div>
 
         <div class="row" data-aos="fade-left">
-          <?php foreach ($category as $catg): ?>
+          <?php $counter = 0;
+          foreach ($category as $catg): ?>
             <div class="col-lg-3 col-md-4 mt-3">
               <div class="icon-box" data-aos="zoom-in" data-aos-delay="50">
                 <i class="ri-stack-fill" style="color: #ffbb2c;"></i>
@@ -132,7 +133,12 @@
                   </a></h3>
               </div>
             </div>
-          <?php endforeach; ?>
+            <?php $counter++;
+
+            if ($counter >= 8) {
+              break;
+            }
+          endforeach; ?>
         </div>
 
       </div>
@@ -215,15 +221,36 @@
 
 
         <div class="row g-0" data-aos="fade-left">
-          <?php foreach ($wikis as $wiki): ?>
-          <div class="col-lg-3 col-md-4">
-            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
-              <a href="/Wiki/public/img/gallery/gallery-1.jpg">
-                <img src="/Wiki/public/img/gallery/<?= $wiki['image']?>" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
-          <?php endforeach; ?>
+          <?php
+          if (isset($_SESSION['role']) && $_SESSION['role'] == 2) {
+            foreach ($wikis as $wiki):
+              ?>
+              <div class="col-lg-3 col-md-4">
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
+                  <a href="/Wiki/public/img/gallery/gallery-1.jpg">
+                    <?php if (isset($wiki['image'])): ?>
+                      <img src="/Wiki/public/img/gallery/<?= $wiki['image'] ?>" alt="" class="img-fluid">
+                    <?php else: ?>
+                      <h1 class="message">Wait till Wikis Team Accept Your Wiki</h1>
+                    <?php endif; ?>
+                  </a>
+                </div>
+              </div>
+              <?php
+            endforeach;
+          } else {
+            foreach ($allwikis as $allwiki): ?>
+              <div class="col-lg-3 col-md-4">
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
+                  <a href="/Wiki/public/img/gallery/gallery-1.jpg">
+                    <img src="/Wiki/public/img/gallery/<?= $allwiki['image'] ?>" alt="" class="img-fluid">
+                  </a>
+                </div>
+              </div>
+              <?php
+            endforeach;
+          }
+          ?>
         </div>
 
       </div>
@@ -313,7 +340,7 @@
       </div>
     </section><!-- End Testimonials Section -->
     <!-- ======= F.A.Q Section ======= -->
-    <section id="faq" class="faq" >
+    <section id="faq" class="faq">
       <div class="container" style="background-colo:white;">
 
         <div class="section-title" data-aos="fade-up">

@@ -37,7 +37,7 @@
                     </a>
                 </li>
 
-                <li class="active">
+                <li>
                     <a href="#">
                         <span class="icon">
                             <ion-icon name="people-outline"></ion-icon>
@@ -54,8 +54,10 @@
                         <span class="title">Category & Tag</span>
                     </a>
                 </li>
-                <li>
-                    <a href="wikis">
+
+
+                <li class="active">
+                    <a href="#">
                         <span class="icon">
                             <ion-icon name="checkmark-outline"></ion-icon>
                         </span>
@@ -105,23 +107,34 @@
 
 
             <div class="cardBox">
-                <?php foreach($users as $user): ?>
-                <div class="card">
-                    <div>
-                        <div class="numbers" style="font-size:25px;">
-                            <p><?= $user['fullname']?></p>
-                        </div>
-                        <div class="cardName">
-                        <p><?= $user['email']?></p>
-                           
-                        </div>
-                    </div>
+                <?php $counter = 0;
+                foreach ($wikis as $wiki): ?>
+                    <div class="card">
+                        <div>
+                            <div class="numbers" style="font-size:25px;">
+                                <p>
+                                    <?= $wiki['title'] ?>
+                                </p>
+                            </div>
+                            <div class="cardName">
+                                <p>
+                                    <?= $wiki['category_name'] ?>
+                                </p>
 
-                    <div class="iconBx">
-                        <img src="/Wiki/public/img/<?= $user['profil']?>" alt="Profile" style="max-width:50px;border-radius:50%;">
+                            </div>
+                        </div>
+
+                        <div class="iconBx">
+                            <img src="/Wiki/public/img/gallery/<?= $wiki['image'] ?>" alt="Profile"
+                                style="max-width:50px;border-radius:50%;height:50px;">
+                        </div>
                     </div>
-                </div>
-                <?php endforeach; ?>
+                    <?php $counter++;
+
+                    if ($counter >= 4) {
+                        break;
+                    }
+                endforeach; ?>
             </div>
 
             <!-- ================ Order Details List ================= -->
@@ -136,36 +149,44 @@
                         <thead>
                             <tr>
                                 <td>ID</td>
-                                <td>Profil</td>
-                                <td>FullName</td>
-                                <td>Address</td>
-                                <td>Email</td>
-                                <td>Type</td>
+                                <td>Image</td>
+                                <td>Title</td>
+                                <td>Description</td>
+                                <td>Category</td>
+                                <td>Status</td>
                                 <td>Actions</td>
 
                             </tr>
                         </thead>
 
                         <tbody id="userTableBody">
-                            <?php foreach($users as $user):?>
-                            <tr>
-                                <td> <?= $user['id']?></td>
-                                <td><img src="/Wiki/public/img/<?= $user['profil']?>" alt="Profile"
-                                        style="max-width:45px;border-radius:50%;"></td>
-                                <td><?= $user['fullname']?></td>
-                                <td><?= $user['address']?></td>
-                                <td><?= $user['email']?></td>
-                                <td><?= isset($user['role_id'])?'Author':''?></td>
-                                <td>
-                                    <a href="#"
-                                        style="color:black;font-size:20px;margin-right:20px"><ion-icon
-                                            name="pencil-outline"></ion-icon></a>
-                                    <a href="#"
-                                        style="color:red;font-size:20px;"><ion-icon
-                                            name="close-circle-outline"></ion-icon></a>
-                                </td>
-                            </tr>
-                            <?php endforeach;?>
+                            <?php foreach ($wikis as $wik): ?>
+                                <tr>
+                                    <td>
+                                        <?= $wik['id'] ?>
+                                    </td>
+                                    <td><img src="/Wiki/public/img/gallery/<?= $wik['image'] ?>" alt="Profile"
+                                            style="max-width:45px;border-radius:10%;height:50px;"></td>
+                                    <td>
+                                        <?= $wik['title'] ?>
+                                    </td>
+                                    <td>
+                                        <?= $wik['description'] ?>
+                                    </td>
+                                    <td>
+                                        <?= $wik['category_name'] ?>
+                                    </td>
+                                    <td style="color: <?= ($wik['status'] == 'Pending') ? 'orange' : 'green' ?>;">
+                                        <?= $wik['status'] ?>
+                                    </td>
+                                    <td>
+                                        <a href="edit" style="color:black;font-size:20px;margin-right:20px"><ion-icon
+                                                name="pencil-outline"></ion-icon></a>
+                                        <a href="#" style="color:red;font-size:20px;"><ion-icon
+                                                name="close-circle-outline"></ion-icon></a>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
 
                         </tbody>
                     </table>

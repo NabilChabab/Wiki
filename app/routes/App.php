@@ -13,6 +13,8 @@ $router->setRoutes([
         'home' => ['UserController', 'allCategories'],
         'logout' => ['UserController', 'logout'],
         'admin' => ['AdminController', 'allusers'],
+        'wikis' => ['AdminController', 'allwikis'],
+        'edit' => ['AdminController', 'editwiki'],
         'category' => ['AdminController', 'allCategories'],
         'addwiki' => ['HomeController', 'allCategories'],
       

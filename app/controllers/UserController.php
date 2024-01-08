@@ -84,17 +84,18 @@ class UserController
         }
     }
 
-    public function home($category , $wikis)
+    public function home($category , $wikis , $allwikis)
     {
         include '../../views/user/index.php';
         exit();
     }
 
     public function allCategories(){
-        $user_id = $_SESSION['user_id'];
+        $user_id = isset( $_SESSION['user_id'])?  $_SESSION['user_id'] : '';
         $category = CategoryModel::getAllCategories();
         $wikis = WikiModel::getWikisByuserId($user_id);
-        $this->home($category , $wikis);
+        $allwikis = WikiModel::getAllWikis();
+        $this->home($category , $wikis , $allwikis);
     }
 
     

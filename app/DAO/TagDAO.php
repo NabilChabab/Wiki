@@ -17,7 +17,6 @@ class TagDAO
             $stmt->bindParam(1, $tagName);
             $stmt->execute();
             $result = $stmt->fetch(\PDO::FETCH_ASSOC);
-            var_dump($result);  
             return $result ? $result['id'] : null;
         } catch (\PDOException $e) {
             echo $e->getMessage();

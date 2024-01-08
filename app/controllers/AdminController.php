@@ -27,9 +27,9 @@ class AdminController
         include '../../views/admin/home.php';
         exit();
     }
-    public function wikis()
+    public function wikis($wikis)
     {
-        include '../../views/admin/home.php';
+        include '../../views/admin/wikis.php';
         exit();
     }
 
@@ -43,7 +43,16 @@ class AdminController
         $tags = TagModel::getAllTags();
         $this->category($category , $tags);
     }
-    
+    public function allwikis(){
+        
+        $wikis = WikiModel::getAllWikis();
+        $this->wikis($wikis);
+    }
+
+    public function editwiki(){
+        include '../../views/admin/editwiki.php';
+        exit();
+    }
 
    
 }

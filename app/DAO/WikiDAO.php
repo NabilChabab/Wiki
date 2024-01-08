@@ -9,7 +9,7 @@ require '../../vendor/autoload.php';
 
 class WikiDAO
 {
-    public static function addWiki($title, $category, $image, $description , $user_id)
+    public static function addWiki($title, $category, $image, $description , $user_id , $tags)
 {
     try {
         $conn = Database::getInstance()->getConnection();
@@ -30,7 +30,8 @@ class WikiDAO
         $stmt->bindParam(5, $categoryId); 
         $stmt->execute();
 
-        return $conn->lastInsertId();
+        $lastid = $conn->lastInsertId();
+        self::addTagsForWiki($lastid , $tags);
     } catch (\PDOException $e) {
         echo $e->getMessage();
         return false;
@@ -43,28 +44,28 @@ public static function addTagsForWiki($wikiId, $tags)
     try {
         $conn = Database::getInstance()->getConnection();
 
-        foreach ($tags as $tag) {
-                TagDAO::getTagIdByName($tag);
+            $tagId = TagDAO::getTagIdByName($tags);
+
+            if ($tagId) {
                 $sql = "INSERT INTO `wiki_tag` (`wiki_id`, `tag_id`) VALUES (?, ?)";
                 $stmt = $conn->prepare($sql);
                 $stmt->bindParam(1, $wikiId);
-                $stmt->bindParam(2, $tag);
-                if (!$stmt->execute()) {
-                    throw new \PDOException("Error inserting tag for wiki: " . implode(', ', $stmt->errorInfo()));
-                
-            } else {
-                throw new \PDOException("Error getting tag ID for tag: $tag");
+                $stmt->bindParam(2, $tagId);
+                $stmt->execute();
             }
-        }
+        
     } catch (\PDOException $e) {
         echo $e->getMessage();
     }
 }
 
+
     public static function getAllWikis(){
         try{
             $conn = Database::getInstance()->getConnection();
-            $sql = "SELECT * FROM `wiki`";
+            $sql = "SELECT w.*, c.name as category_name
+            FROM `wiki` w
+            JOIN `category` c ON w.category_id = c.id";
             $stmt = $conn->prepare($sql);
             $stmt->execute();
             $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
@@ -78,7 +79,7 @@ public static function addTagsForWiki($wikiId, $tags)
     public static function getWikisByuserId($userId){
         try{
             $conn = Database::getInstance()->getConnection();
-            $sql = "SELECT * FROM `wiki` WHERE user_id = ?";
+            $sql = "SELECT * FROM `wiki` WHERE user_id = ? AND status = 'Accepted'";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(1, $userId);
             $stmt->execute();

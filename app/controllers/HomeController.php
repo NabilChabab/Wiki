@@ -24,8 +24,6 @@ class HomeController
             $user_id = $_SESSION['user_id'];
             if (move_uploaded_file($file_temp, $upload_image)) {
                 WikiModel::addWikiWithTags($title, $category, $tags, $upload_image, $description ,$user_id);
-                var_dump($tags);
-                die();
                 header("Location: home"); 
                 exit();
             } else {
@@ -33,15 +31,12 @@ class HomeController
         }
     }
 
-    public function addwiki($category , $tag){
-        include "../../views/user/addwiki.php";
-        exit();
-    }
-
+ 
     public function allCategories(){
         $category = CategoryModel::getAllCategories();
         $tags = TagModel::getAllTags();
-        $this->addwiki($tags , $category);
+        include "../../views/user/addwiki.php";
+        exit();
     }
     
 

@@ -84,24 +84,24 @@ form select {
 }
 
 /* Style the options */
-form select option {
+/* form select option {
     background-color: #1D1D1D;
     color: white;
     padding: 10px;
 }
 
 /* Style the selected option */
-form select option:checked {
+/* form select option:checked {
     background-color: #333;
     color: #fff;
-}
+} */
 
-    form input{
+    /* form input{
         width: 100%;
         padding: 20px;
         border: 1px solid rgb(201, 201, 201);
         border-radius: 10px;
-    }
+    } */
     .container{
         border-radius: 20px;
         
@@ -151,20 +151,20 @@ form select option:checked {
                                 <div class="form-group">
                                     <label for="category" class="form-label">Category</label>
                                     <select name="category" id="category">
-                                        <option value="option1" selected>Choose your category</option>
+                                        <option value="option1" default>Choose your category</option>
                                         <?php foreach($category as $ctg): ?>
-                                        <option value="<?= $ctg['name'] ?>"><?= $ctg['name'] ?></option>
+                                        <option value="<?= $ctg['id'] ?>"><?= $ctg['name'] ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
                             
                             <div class="form-group">
                                 <label for="tag" class="form-label">Add Your Tags</label>
-                                <div class="tag-container" id="tag-container"></div>
-                                <select name="tags" id="tag">
-                                        <option value="option1" selected>Choose your Tags</option>
-                                        <?php foreach($tag as $tg): ?>
-                                        <option value="<?= $tg['name'] ?>"><?= $tg['name'] ?></option>
+                                <!-- <div class="tag-container" id="tag-container"></div> -->
+                                <select name="tags">
+                                        <option value="option1" default>Choose your Tags</option>
+                                        <?php foreach($tags as $tg): ?>
+                                        <option value="<?= $tg['id'] ?>"><?= $tg['name'] ?></option>
                                         <?php endforeach; ?>
                                     </select>
                             </div>
@@ -217,7 +217,7 @@ form select option:checked {
             image.src = URL.createObjectURL(input.files[0]);
         }
     </script>
-     <script>
+     <!-- <script>
 
         document.addEventListener('DOMContentLoaded', function () {
             const tagInput = document.getElementById('tag');
@@ -227,7 +227,7 @@ form select option:checked {
                 if (e.key === 'Enter') {
                     e.preventDefault();
 
-                    const tagValue = tagInput.value.trim();
+                    const tagValue = tagInput.innerHTML.trim();
                     if (tagValue !== '') {
                         const tagElement = document.createElement('div');
                         tagElement.classList.add('tag');
@@ -247,7 +247,7 @@ form select option:checked {
             const tagContainer = tagElement.parentNode;
             tagContainer.removeChild(tagElement);
         }
-    </script>
+    </script> -->
 
 </body>
 
