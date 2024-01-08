@@ -1,0 +1,92 @@
+<?php
+
+namespace App\DAO;
+
+use App\database\Database;
+use App\DAO\TagDAO;
+
+require '../../vendor/autoload.php';
+
+class WikiDAO
+{
+    public static function addWiki($title, $category, $image, $description , $user_id)
+{
+    try {
+        $conn = Database::getInstance()->getConnection();
+
+        $categoryId = CategoryDAO::getCategoryIdByName($category);
+
+        if (!$categoryId) {
+            echo "Error: Category not found.";
+            return false;
+        }
+
+        $sql = "INSERT INTO `Wiki` (`title`, `description`, `image`, `user_id` , `category_id`) VALUES (?, ?, ?, ? ,?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(1, $title);
+        $stmt->bindParam(2, $description);
+        $stmt->bindParam(3, $image);
+        $stmt->bindParam(4, $user_id);
+        $stmt->bindParam(5, $categoryId); 
+        $stmt->execute();
+
+        return $conn->lastInsertId();
+    } catch (\PDOException $e) {
+        echo $e->getMessage();
+        return false;
+    }
+}
+
+
+public static function addTagsForWiki($wikiId, $tags)
+{
+    try {
+        $conn = Database::getInstance()->getConnection();
+
+        foreach ($tags as $tag) {
+                TagDAO::getTagIdByName($tag);
+                $sql = "INSERT INTO `wiki_tag` (`wiki_id`, `tag_id`) VALUES (?, ?)";
+                $stmt = $conn->prepare($sql);
+                $stmt->bindParam(1, $wikiId);
+                $stmt->bindParam(2, $tag);
+                if (!$stmt->execute()) {
+                    throw new \PDOException("Error inserting tag for wiki: " . implode(', ', $stmt->errorInfo()));
+                
+            } else {
+                throw new \PDOException("Error getting tag ID for tag: $tag");
+            }
+        }
+    } catch (\PDOException $e) {
+        echo $e->getMessage();
+    }
+}
+
+    public static function getAllWikis(){
+        try{
+            $conn = Database::getInstance()->getConnection();
+            $sql = "SELECT * FROM `wiki`";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            return $result;
+
+        }
+        catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+    public static function getWikisByuserId($userId){
+        try{
+            $conn = Database::getInstance()->getConnection();
+            $sql = "SELECT * FROM `wiki` WHERE user_id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(1, $userId);
+            $stmt->execute();
+            $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            return $result;
+        }
+        catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+}

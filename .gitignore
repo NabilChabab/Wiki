@@ -1,0 +1,9 @@
+.env
+<<<<<<< HEAD
+/vendor
+=======
+
+/vendor
+/node_modules
+
+>>>>>>> faf77d74beb851e8534dcd1ae695a292791a48e2
