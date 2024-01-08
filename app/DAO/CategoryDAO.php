@@ -59,5 +59,28 @@ class CategoryDAO
             return false;
         }
     }
+
+    public static function getCategoryId($categoryid)
+    {
+        try {
+            $conn = Database::getInstance()->getConnection();
+
+            $sql = "SELECT `id` FROM `category` WHERE `id` = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(1, $categoryid);
+            $stmt->execute();
+
+            $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+            if ($result) {
+                return $result['id'];
+            }
+
+            return false;
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
     
 }

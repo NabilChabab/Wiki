@@ -14,14 +14,14 @@ class WikiDAO
     try {
         $conn = Database::getInstance()->getConnection();
 
-        $categoryId = CategoryDAO::getCategoryIdByName($category);
+        $categoryId = CategoryDAO::getCategoryId($category);
 
         if (!$categoryId) {
             echo "Error: Category not found.";
             return false;
         }
 
-        $sql = "INSERT INTO `Wiki` (`title`, `description`, `image`, `user_id` , `category_id`) VALUES (?, ?, ?, ? ,?)";
+        $sql = "INSERT INTO `wiki` (`title`, `description`, `image`, `user_id` , `category_id`) VALUES (?, ?, ?, ? ,?)";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(1, $title);
         $stmt->bindParam(2, $description);
@@ -29,7 +29,6 @@ class WikiDAO
         $stmt->bindParam(4, $user_id);
         $stmt->bindParam(5, $categoryId); 
         $stmt->execute();
-
         $lastid = $conn->lastInsertId();
         self::addTagsForWiki($lastid , $tags);
     } catch (\PDOException $e) {
@@ -45,20 +44,23 @@ public static function addTagsForWiki($wikiId, $tags)
         $conn = Database::getInstance()->getConnection();
 
         foreach ($tags as $tag) {
-            $tagId = TagDAO::getTagIdByName($tag);
+            $tagId = TagDAO::getTagId($tag);
 
-            if ($tagId) {
+            if ($tagId !== null) {
                 $sql = "INSERT INTO `wiki_tag` (`wiki_id`, `tag_id`) VALUES (?, ?)";
                 $stmt = $conn->prepare($sql);
                 $stmt->bindParam(1, $wikiId);
                 $stmt->bindParam(2, $tagId);
                 $stmt->execute();
+            } else {
+                echo "Error: Tag not found - $tag";
             }
         }
     } catch (\PDOException $e) {
         echo $e->getMessage();
     }
 }
+
 
 
 

@@ -22,6 +22,21 @@ class TagDAO
             echo $e->getMessage();
         }
     }
+
+    public static function getTagId($tagid)
+    {
+        try {
+            $conn = Database::getInstance()->getConnection();
+            $sql = "SELECT id FROM `tag` WHERE `id` = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(1, $tagid);
+            $stmt->execute();
+            $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+            return $result ? $result['id'] : null;
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
     
 
     public static function addTag($tag){
