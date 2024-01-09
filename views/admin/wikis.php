@@ -138,6 +138,7 @@
             </div>
 
             <!-- ================ Order Details List ================= -->
+            
             <div class="details">
                 <div class="recentOrders">
                     <div class="cardHeader">
@@ -176,12 +177,11 @@
                                     <td>
                                         <?= $wik['category_name'] ?>
                                     </td>
-                                    <td style="color: <?= ($wik['status'] == 'Pending') ? 'orange' : 'green' ?>;">
+                                    <td style="color: <?= ($wik['status'] == 'Pending') ? 'orange' : (($wik['status'] == 'Accepted') ? 'green' : 'red') ?>;">
                                         <?= $wik['status'] ?>
                                     </td>
                                     <td>
-                                        <a href="edit" style="color:black;font-size:20px;margin-right:20px"><ion-icon
-                                                name="pencil-outline"></ion-icon></a>
+                                        <a href="edit?id=<?= base64_encode($wik['id'])?>" style="color:black;font-size:20px;margin-right:20px"><ion-icon name="eye-off-outline"></ion-icon></a>
                                         <a href="#" style="color:red;font-size:20px;"><ion-icon
                                                 name="close-circle-outline"></ion-icon></a>
                                     </td>

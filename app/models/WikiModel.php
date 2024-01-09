@@ -28,4 +28,14 @@ class WikiModel
         return $wiki;
     }
 
+    public static function getWikiById($id){
+        $wiki = WikiDAO::getWikisById($id);
+        return  $wiki ? $wiki : null;
+    }
+
+    public static function updateWiki($wikiId , $status){
+        WikiDAO::updateWiki($wikiId , $status);
+        
+    }
+
 }

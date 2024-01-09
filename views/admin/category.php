@@ -118,7 +118,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="reservations.php">
+                    <a href="wikis">
                         <span class="icon">
                             <ion-icon name="checkmark-outline"></ion-icon>
                         </span>

@@ -40,6 +40,11 @@ class HomeController
         include "../../views/user/addwiki.php";
         exit();
     }
+
+    public function wikiDeatils(){
+        include '../../views/user/details.php';
+        exit();
+    }
     
 
    

@@ -28,6 +28,33 @@
 
 </head>
 
+<style>
+  .search{
+    position: relative;
+    width: 300px;
+    border: none;
+    border-radius: 27px;
+    padding: 10px;
+    font-size: 15px;
+}
+
+.icon{
+    background-color: transparent;
+    width: 45px;
+    height: 40px;
+    font-size: 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    border-radius: 28px;
+    position: absolute;
+    top: 0%;
+    right: 0%;
+}
+</style>
+
 <body>
 
   <header id="header" class="fixed-top d-flex align-items-center header-transparent">
@@ -35,8 +62,13 @@
 
       <div class="logo">
         <h1><a href="index.html"><span>Wiki Wiki</span></a></h1>
-
       </div>
+      <div class="search">
+                <input type="text" placeholder="Search" class="search" id="searchInput" oninput="searchCards()">
+                <div class="icon">
+                    <i class='bx bx-search-alt'></i>
+                </div>
+            </div>
 
       <nav id="navbar" class="navbar">
         <ul>
@@ -194,40 +226,29 @@
     <!-- End Details Section -->
 
     <!-- ======= Gallery Section ======= -->
-    <section id="gallery" class="gallery">
-      <div id="addWikiModal" class="modal">
-        <div class="modal-content">
-          <!-- Your existing form code goes here -->
-          <form method="POST" id="signup-form" class="signup-form" action="#">
-            <!-- ... Your form fields ... -->
-            <button type="submit" name="addwiki">Post Wiki</button>
-          </form>
-          <!-- End of your form code -->
-          <span class="close" onclick="closeModal()">&times;</span>
-        </div>
-      </div>
+    <?php if (isset($_SESSION['role']) == 2): ?>
+
+      <section id="gallery" class="gallery">
+
       <div class="container">
         <div class="section-title d-flex justify-content-between align-items-center" data-aos="fade-up">
           <div>
             <h2>Wikis</h2>
-            <p>Check our Wikis</p>
+            <p>Check Your Wikis</p>
           </div>
-          <?php
-          if (isset($_SESSION['role']) == 2) {
-            echo '<a href="addwiki" class="btn btn-dark" style="width:150px; height:40px;">Add Wiki</a>';
-          }
-          ?>
+         
+          <a href="addwiki" class="btn btn-dark" style="width:150px; height:40px;">Add Wiki</a>
+        
         </div>
 
 
         <div class="row g-0" data-aos="fade-left">
           <?php
-          if (isset($_SESSION['role']) && $_SESSION['role'] == 2) {
             foreach ($wikis as $wiki):
               ?>
               <div class="col-lg-3 col-md-4">
                 <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
-                  <a href="/Wiki/public/img/gallery/gallery-1.jpg">
+                  <a href="wiki_details?id=<?= base64_encode($wiki['id'])?>">
                     <?php if (isset($wiki['image'])): ?>
                       <img src="/Wiki/public/img/gallery/<?= $wiki['image'] ?>" alt="" class="img-fluid">
                     <?php else: ?>
@@ -238,23 +259,47 @@
               </div>
               <?php
             endforeach;
-          } else {
+          ?>
+        </div>
+
+      </div>
+    </section>
+    <?php endif;?>
+    
+          
+    <section id="gallery" class="gallery">
+
+      <div class="container">
+        <div class="section-title d-flex justify-content-between align-items-center" data-aos="fade-up">
+          <div>
+            <h2>Wikis</h2>
+            <p>Check our Wikis</p>
+          </div>          
+        </div>
+
+
+        <div class="row g-0" data-aos="fade-left">
+          <?php
+          $counter = 0;
             foreach ($allwikis as $allwiki): ?>
               <div class="col-lg-3 col-md-4">
                 <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
-                  <a href="/Wiki/public/img/gallery/gallery-1.jpg">
+                  <a href="wiki_details?id=<?= base64_encode($allwiki['id'])?>">
                     <img src="/Wiki/public/img/gallery/<?= $allwiki['image'] ?>" alt="" class="img-fluid">
                   </a>
                 </div>
               </div>
               <?php
+              $counter++;
+              if ($counter >= 4) {
+                break;
+              }
             endforeach;
-          }
           ?>
         </div>
 
       </div>
-    </section><!-- End Gallery Section -->
+    </section>
 
     <!-- ======= Testimonials Section ======= -->
     <section id="testimonials" class="testimonials">

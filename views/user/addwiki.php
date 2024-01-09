@@ -160,13 +160,13 @@ form select {
                             
                             <div class="form-group">
                                 <label for="tag" class="form-label">Add Your Tags</label>
-                                <!-- <div class="tag-container" id="tag-container"></div> -->
+                                <div class="tag-container" id="tag-container"></div>
                                 <select name="tags[]" multiple>
-    <option value="option1" default>Choose your Tags</option>
-    <?php foreach($tags as $tg): ?>
-        <option value="<?= $tg['id'] ?>"><?= $tg['name'] ?></option>
-    <?php endforeach; ?>
-</select>
+                                    <option value="option1" default>Choose your Tags</option>
+                                        <?php foreach($tags as $tg): ?>
+                                    <option value="<?= $tg['id'] ?>"><?= $tg['name'] ?></option>
+                                        <?php endforeach; ?>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <div class="card">
@@ -195,6 +195,12 @@ form select {
 
     <script src="https://cdn.tiny.cloud/1/f9ggt3dqixvgwwjjoxp3xio6hgf0r72qnuvll71z6g0sckld/tinymce/6/tinymce.min.js"
         referrerpolicy="origin"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Include Select2 JS -->
+
+
+
     <script>
         tinymce.init({
             selector: 'textarea',

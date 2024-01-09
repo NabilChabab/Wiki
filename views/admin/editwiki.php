@@ -27,8 +27,9 @@
     }
 
     .card img{
-        width:200px;
-        border-radius:50%;
+        width:700px;
+        height: 400px;
+        border-radius:2%;
         object-fit:cover;
     }
     .card label{
@@ -42,47 +43,46 @@
     .card input{
         display:none;
     }
+    .title{
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+          }
+          .description{
+            color: gray;
+            font-size: 20px;
+            padding: 10px;
+          }
    </style>
 </head>
 
 <body class="bg-dark text-light">
-   <div class="container mt-5">
+   <div class="container mt-3">
       <div class="text-center mb-4">
          <h3>Update Wikis</h3>
          <p class="text-muted">Complete the form below to update a wiki</p>
       </div>
 
-      <div class="container d-flex justify-content-center"style="margin-top:10%;">
-         <form action="" method="post" style="width:50vw; min-width:300px;">
-            <div class="row mb-3">
-                <div class="card mb-5">
+      <div class="container d-flex justify-content-center"style="margin-top:1%;">
+         <form action="editwiki?id=<?= base64_encode($wiki['id']) ?>" method="post" style="width:50vw; min-width:300px;">
+            <div class="row">
+                <div class="card">
         
-            <img src="/Wiki/public/img/me.jpg">
+            <img src="/Wiki/public/img/gallery/<?= $wiki['image'] ?>">
+
+               <p class="title"><?= $wiki['title'] ?></p>
+               <p class="description"><?= $wiki['description']?></p>
         
                 </div>
-               <div class="col">
-                  <label class="form-label">First Name:</label>
-                  <input type="text" class="form-control" name="first_name" placeholder="firstname" value="">
-               </div>
-
-               <div class="col">
-                  <label class="form-label">Last Name:</label>
-                  <input type="text" class="form-control" name="last_name" placeholder="lastname" value="">
-               </div>
-            </div>
-
-            <div class="mb-3">
-               <label class="form-label">CIN:</label>
-               <input type="text" class="form-control" name="cin" placeholder="CIN" value="">
-            </div>
-
-            <div class="mb-3">
-               <label class="form-label">Email:</label>
-               <input type="email" class="form-control" name="email" placeholder="name@example.com" value="">
-            </div>
+                <select class="form-select mb-3" aria-label="Default select example" name="status">
+                    <option selected><?= $wiki['status']?></option>
+                    <option value="Pending">Pending</option>
+                    <option value="Accepted">Accepted</option>
+                    <option value="Refused">Refused</option>
+                </select>
 
             <div class="row ms-1 mt-4">
-               <button type="submit" class="btn btn-success col-3 me-3" name="submit">Update</button>
+               <button type="submit" class="btn btn-success col-3 me-3" name="update">Update</button>
                <a href="index.php" class="btn btn-danger col-3">Cancel</a>
             </div>
          </form>

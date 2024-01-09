@@ -94,4 +94,34 @@ public static function addTagsForWiki($wikiId, $tags)
             echo $e->getMessage();
         }
     }
+
+    public static function updateWiki($wikiId , $status){
+        try{
+            $conn = Database::getInstance()->getConnection();
+            $sql = "UPDATE `wiki` SET `status` = ? WHERE `id` = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(1, $status);
+            $stmt->bindParam(2, $wikiId);
+            $stmt->execute();
+        }
+        catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public static function getWikisById($wikiId){
+        try {
+            $conn = Database::getInstance()->getConnection();
+            $sql = "SELECT * FROM `wiki` WHERE `id` = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(1, $wikiId);
+            $stmt->execute();
+            $result = $stmt->fetch(\PDO::FETCH_ASSOC); 
+            return $result;
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+
 }

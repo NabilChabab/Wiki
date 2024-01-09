@@ -49,10 +49,28 @@ class AdminController
         $this->wikis($wikis);
     }
 
-    public function editwiki(){
-        include '../../views/admin/editwiki.php';
-        exit();
+    public function getWikisById(){
+        if (isset($_GET['id'])) {
+            $id = base64_decode($_GET['id']);
+            $wiki = WikiModel::getWikiById($id); 
+            include '../../views/admin/editwiki.php';
+            exit();
+        } else {
+            echo "Error: 'id' parameter is missing.";
+        }
     }
-
-   
+    public function updateStatus(){
+        if (isset($_POST["update"])) {
+            if (isset($_GET['id'])) {
+                $wikiId = base64_decode($_GET['id']);
+                $status = $_POST['status'];
+                var_dump($wikiId, $status);
+                WikiModel::updateWiki($wikiId, $status);
+                header('Location:wikis');
+            } else {
+                echo "Error: 'id' parameter is missing.";
+            }
+        }
+    }
+    
 }
