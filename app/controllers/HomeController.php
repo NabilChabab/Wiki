@@ -45,6 +45,7 @@ class HomeController
         if (isset($_GET['id'])) {
             $id = base64_decode($_GET['id']);
             $wiki = WikiModel::getWikiById($id); 
+            $wikis = WikiModel::getAllWikis();
             include '../../views/user/details.php';
             exit();
         } else {
