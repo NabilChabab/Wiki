@@ -112,7 +112,10 @@ public static function addTagsForWiki($wikiId, $tags)
     public static function getWikisById($wikiId){
         try {
             $conn = Database::getInstance()->getConnection();
-            $sql = "SELECT * FROM `wiki` WHERE `id` = ?";
+            $sql = "SELECT w.*, u.fullname as user_name, u.email as user_email , u.profil as user_profil
+            FROM `wiki` w 
+            JOIN `user` u ON w.user_id = u.id
+            WHERE w.id = ?";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(1, $wikiId);
             $stmt->execute();

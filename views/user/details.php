@@ -81,18 +81,18 @@
                 <div class="col-lg-8 m-15px-tb">
                     <article class="article">
                         <div class="article-img">
-                            <img src="https://www.bootdey.com/image/800x350/87CEFA/000000" title="" alt="">
+                            <img src="/Wiki/public/img/gallery/<?= $wiki['image']?>" title="" alt="">
                         </div>
                         <div class="article-title">
                             <h6><a href="#">Lifestyle</a></h6>
                             <h2>They Now Bade Farewell To The Kind But Unseen People</h2>
                             <div class="media">
                                 <div class="avatar">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" title="" alt="">
+                                    <img src="/Wiki/public/img/<?=$wiki['user_profil']?>" title="" alt="">
                                 </div>
                                 <div class="media-body">
-                                    <label>Rachel Roth</label>
-                                    <span>26 FEB 2020</span>
+                                    <label><?= $wiki['user_name']?></label>
+                                    <span><?= $wiki['user_email']?></span>
                                 </div>
                             </div>
                         </div>

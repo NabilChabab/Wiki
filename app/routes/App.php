@@ -17,7 +17,7 @@ $router->setRoutes([
         'edit' => ['AdminController', 'getWikisById'],
         'category' => ['AdminController', 'allCategories'],
         'addwiki' => ['HomeController', 'allCategories'],
-        'wiki_details'=> ['HomeController','wikiDeatils'],
+        'wiki_details'=> ['HomeController','getWikisById'],
       
     ],
     'POST' => [

@@ -41,9 +41,15 @@ class HomeController
         exit();
     }
 
-    public function wikiDeatils(){
-        include '../../views/user/details.php';
-        exit();
+    public function getWikisById(){
+        if (isset($_GET['id'])) {
+            $id = base64_decode($_GET['id']);
+            $wiki = WikiModel::getWikiById($id); 
+            include '../../views/user/details.php';
+            exit();
+        } else {
+            echo "Error: 'id' parameter is missing.";
+        }
     }
     
 
