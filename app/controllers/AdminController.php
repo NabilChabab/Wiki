@@ -72,5 +72,12 @@ class AdminController
             }
         }
     }
+
+    public function updateCat(){
+        $id = base64_decode($_GET["id"]);
+        $newcat = CategoryModel::getCategoryById($id);
+        include '../../views/admin/editCat.php';
+        exit();
+    }
     
 }

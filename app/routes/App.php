@@ -15,9 +15,9 @@ $router->setRoutes([
         'admin' => ['AdminController', 'allusers'],
         'wikis' => ['AdminController', 'allwikis'],
         'edit' => ['AdminController', 'getWikisById'],
+        'editCat' => ['AdminController', 'updateCat'],
         'category' => ['AdminController', 'allCategories'],
-        'addwiki' => ['HomeController', 'allCategories'],
-        'addwikitest' => ['HomeController', 'addwikitest'],
+        'addwiki' => ['HomeController', 'addwiki'],
         'wiki_details'=> ['HomeController','getWikisById'],
       
     ],
@@ -28,6 +28,7 @@ $router->setRoutes([
         'addtag' => ['TagController', 'addTag'],
         'addwiki' => ['HomeController', 'addwk'],
         'editwiki' => ['AdminController', 'updateStatus'],
+        'editcat' => ['CategoryController', 'updateCategory'],
 
         
     ],

@@ -237,7 +237,7 @@
             <p>Check Your Wikis</p>
           </div>
          
-          <a href="addwikitest" class="btn btn-dark" style="width:150px; height:40px;">Add Wiki</a>
+          <a href="addwiki" class="btn btn-dark" style="width:150px; height:40px;">Add Wiki</a>
         
         </div>
 

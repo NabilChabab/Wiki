@@ -41,11 +41,11 @@ class HomeController
         exit();
     }
 
-    public function addwikitest(){
+    public function addwiki(){
             $wikis = WikiModel::getAllWikis();
             $category = CategoryModel::getAllCategories();
             $tags = TagModel::getAllTags();
-            include "../../views/user/addwikitest.php";
+            include "../../views/user/addwiki.php";
             exit();
         
     }

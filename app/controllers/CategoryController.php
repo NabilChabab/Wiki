@@ -18,7 +18,18 @@ class CategoryController
             exit();
         }
     }
-    
+
+
+    public static function updateCategory(){
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
+        $categoryId = base64_decode($_GET['id']);
+        $newCategoryName = $_POST['newCategory'];
+
+        CategoryModel::updateCategory($categoryId, $newCategoryName);
+        header("Location: category");
+        exit();
+    }
+}
 
    
 }

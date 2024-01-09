@@ -65,22 +65,37 @@ class CategoryDAO
         try {
             $conn = Database::getInstance()->getConnection();
 
-            $sql = "SELECT `id` FROM `category` WHERE `id` = ?";
+            $sql = "SELECT * FROM `category` WHERE `id` = ?";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(1, $categoryid);
             $stmt->execute();
 
             $result = $stmt->fetch(\PDO::FETCH_ASSOC);
 
-            if ($result) {
-                return $result['id'];
-            }
+                return $result;
+            
 
-            return false;
         } catch (\PDOException $e) {
             echo $e->getMessage();
             return false;
         }
     }
+
     
+    public static function updateCategory($categoryId, $newCategoryName)
+    {
+        try {
+            $conn = Database::getInstance()->getConnection();
+
+            $sql = "UPDATE `category` SET `name` = ? WHERE `id` = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(1, $newCategoryName);
+            $stmt->bindParam(2, $categoryId);
+            $stmt->execute();
+            return true;
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
 }

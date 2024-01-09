@@ -269,8 +269,11 @@
                                         <?= $catg['name'] ?>
                                     </td>
                                     <td>
-                                        <a href="#" style="color:black;font-size:20px;margin-right:20px"><ion-icon
+                                        <a href="editCat?id=<?= base64_encode($catg['id']) ?>"
+                                            style="color:black;font-size:20px;margin-right:20px"><ion-icon
                                                 name="pencil-outline"></ion-icon></a>
+                                        </a>
+                                        </a>
                                         <a href="#" style="color:red;font-size:20px;"><ion-icon
                                                 name="close-circle-outline"></ion-icon></a>
                                     </td>
@@ -279,6 +282,8 @@
                         </tbody>
                     </table>
                 </div>
+                <!-- Update Category Modal -->
+
 
                 <!-- ================= New Customers ================ -->
                 <div class="recentOrders" style="width:50%;">
@@ -338,8 +343,50 @@
 
     <!-- =========== Scripts =========  -->
     <script src="/Wiki/public/js/admin.js"></script>
-    <!-- Add this JavaScript code in the <script> tag or in a separate JavaScript file -->
+
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var modal = document.getElementById('addCategoryModal');
+            var updateModal = document.getElementById('updateCategoryModal');
+            var span = document.querySelector('.close');
+
+            // Open addCategoryModal
+            var addButton = document.querySelector('.btn');
+            addButton.onclick = function () {
+                modal.style.display = 'block';
+            };
+
+            span.onclick = function () {
+                closeModal();
+            };
+
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    closeModal();
+                }
+            };
+
+            // Open updateCategoryModal
+            function openUpdateModal(categoryId) {
+                document.getElementById('newCategoryName').value = '';
+                document.getElementById('categoryId').value = categoryId;
+                updateModal.style.display = 'block';
+            }
+
+            // Close updateCategoryModal
+            function closeUpdateModal() {
+                updateModal.style.display = 'none';
+            }
+        });
+
+
+    </script>
+
+
+
+
+
+    <!-- <script>
         var modal = document.getElementById('addCategoryModal');
 
         var addButton = document.querySelector('.btn');
@@ -363,7 +410,7 @@
         function closeModal() {
             modal.style.display = 'none';
         }
-    </script>
+    </script> -->
 
     <script>
         var modalTag = document.getElementById('addTagModal');

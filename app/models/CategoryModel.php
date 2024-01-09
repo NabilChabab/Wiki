@@ -15,4 +15,13 @@ class CategoryModel
         $categories = CategoryDAO::getAllCategories();
         return $categories;
     }
+
+    public static function getCategoryById($id){
+        $categories = CategoryDAO::getCategoryId($id);
+        return $categories;
+    }
+
+    public static function updateCategory($id,$category){
+        CategoryDAO::updateCategory($id,$category);
+    }
 }
