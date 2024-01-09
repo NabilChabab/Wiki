@@ -84,7 +84,7 @@
                             <img src="/Wiki/public/img/gallery/<?= $wiki['image']?>" title="" alt="">
                         </div>
                         <div class="article-title">
-                            <h6><a href="#">Lifestyle</a></h6>
+                            <h6><a href="#"><?= $wiki['created_at']?></a></h6>
                             <h2><?= $wiki['title']?></h2>
                             <div class="media d-flex">
                                 <div class="avatar ">
@@ -101,7 +101,7 @@
                             
                         </div>
                         <div class="nav tag-cloud">
-                            <a href="#">Design</a>
+                            <a href="#"><?= $wiki['tag_name']?></a>
                         </div>
                     </article>
                 </div>
@@ -137,7 +137,7 @@
                     <!-- Latest Post -->
                     <div class="widget widget-latest-post">
                         <div class="widget-title">
-                            <h3>Latest Post</h3>
+                            <h3>Latest Wikis</h3>
                         </div>
                         <div class="widget-body">
                             
@@ -157,7 +157,7 @@
                                     </div>
                                 </div>
                                 <div class="lpa-right">
-                                    <a href="#">
+                                    <a href="wiki_details?id=<?= base64_encode($wiki['id'])?>">
                                         <img src="/Wiki/public/img/gallery/<?= $wiki['image']?>" title="" alt="">
                                     </a>
                                 </div>
@@ -174,17 +174,12 @@
                     <!-- widget Tags -->
                     <div class="widget widget-tags">
                         <div class="widget-title">
-                            <h3>Latest Tags</h3>
+                            <h3>Your Permissions</h3>
                         </div>
                         <div class="widget-body">
                             <div class="nav tag-cloud">
-                                <a href="#">Design</a>
-                                <a href="#">Development</a>
-                                <a href="#">Travel</a>
-                                <a href="#">Web Design</a>
-                                <a href="#">Marketing</a>
-                                <a href="#">Research</a>
-                                <a href="#">Managment</a>
+                                <a href="#">Update Your Wiki</a>
+                                <a href="#" style="background-color:red;">Delete Your Wiki</a>
                             </div>
                         </div>
                     </div>

@@ -41,6 +41,15 @@ class HomeController
         exit();
     }
 
+    public function addwikitest(){
+            $wikis = WikiModel::getAllWikis();
+            $category = CategoryModel::getAllCategories();
+            $tags = TagModel::getAllTags();
+            include "../../views/user/addwikitest.php";
+            exit();
+        
+    }
+
     public function getWikisById(){
         if (isset($_GET['id'])) {
             $id = base64_decode($_GET['id']);

@@ -172,7 +172,7 @@
                                         <?= $wik['title'] ?>
                                     </td>
                                     <td>
-                                        <?= $wik['description'] ?>
+                                        <?= (strlen($wiki['description']) > 20 ? substr($wiki['description'], 0, 20) . '....' : $wiki['description'])?>
                                     </td>
                                     <td>
                                         <?= $wik['category_name'] ?>
