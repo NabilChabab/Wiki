@@ -34,7 +34,8 @@
   <header id="header" class="fixed-top d-flex align-items-center header-transparent" style="background-color:rgba(1, 3, 91, 0.9);">
     <div class="container d-flex align-items-center justify-content-between">
 
-      <div class="logo">
+      <div class="logo d-flex justify-content-center align-items-center">
+        <a href="home"><i class="ri-arrow-left-s-line me-5" style="font-size :30px; color:white;"></i></a>
         <h1><a href="index.html"><span>Wiki Wiki</span></a></h1>
       </div>
 
@@ -171,18 +172,7 @@
                         </div>
                     </div>
                     <!-- End Latest Post -->
-                    <!-- widget Tags -->
-                    <div class="widget widget-tags">
-                        <div class="widget-title">
-                            <h3>Your Permissions</h3>
-                        </div>
-                        <div class="widget-body">
-                            <div class="nav tag-cloud">
-                                <a href="#">Update Your Wiki</a>
-                                <a href="#" style="background-color:red;">Delete Your Wiki</a>
-                            </div>
-                        </div>
-                    </div>
+           
                     <!-- End widget Tags -->
                 </div>
             </div>

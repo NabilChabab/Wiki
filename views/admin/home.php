@@ -105,7 +105,9 @@
 
 
             <div class="cardBox">
-                <?php foreach($users as $user): ?>
+                <?php 
+                    $counter = 0;
+                foreach($users as $user): ?>
                 <div class="card">
                     <div>
                         <div class="numbers" style="font-size:25px;">
@@ -121,7 +123,12 @@
                         <img src="/Wiki/public/img/<?= $user['profil']?>" alt="Profile" style="max-width:50px;border-radius:50%;">
                     </div>
                 </div>
-                <?php endforeach; ?>
+                <?php
+                $counter++;
+                if($counter >= 4){
+                    break;
+                }
+             endforeach; ?>
             </div>
 
             <!-- ================ Order Details List ================= -->

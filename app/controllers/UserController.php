@@ -4,6 +4,7 @@ namespace App\controllers;
 
 require_once '../../vendor/autoload.php';
 
+use App\models\StatisticsModel;
 use App\models\UserModel;
 use App\models\CategoryModel;
 use App\models\WikiModel;
@@ -76,6 +77,9 @@ class UserController
                 } elseif ($user['role_id'] == 2) {
                     $_SESSION['user_id'] = $user['id'];
                     $_SESSION['user_image'] = $user['profil'];
+                    $_SESSION['user_name'] = $user['fullname'];
+                    $_SESSION['user_email'] = $user['email'];
+                    $_SESSION['user_address'] = $user['address'];
                     $_SESSION['role'] = $user['role_id'];
                     header("Location: home");
                     exit();
@@ -84,18 +88,26 @@ class UserController
         }
     }
 
-    public function home($category , $wikis , $allwikis)
-    {
-        include '../../views/user/index.php';
-        exit();
-    }
 
+    
     public function allCategories(){
         $user_id = isset( $_SESSION['user_id'])?  $_SESSION['user_id'] : '';
         $category = CategoryModel::getAllCategories();
         $wikis = WikiModel::getWikisByuserId($user_id);
         $allwikis = WikiModel::getAllWikis();
-        $this->home($category , $wikis , $allwikis);
+        $count_wikis = StatisticsModel::CountWikis();
+        $count_tags = StatisticsModel::CountTags();
+        $count_cats = StatisticsModel::CountCategories();
+        $count_users = StatisticsModel::CountUsers();
+        include '../../views/user/index.php';
+        exit();
+    }
+
+    public function profil(){
+        $user_id = isset( $_SESSION['user_id'])?  $_SESSION['user_id'] : '';
+        $userwikis = WikiModel::getWikisByuserId($user_id);
+        include '../../views/user/profile.php';
+        exit();
     }
 
     

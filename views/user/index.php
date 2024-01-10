@@ -90,7 +90,7 @@
           if (isset($_SESSION['role']) == 2) {
             echo '<li class="dropdown"><a href=""><img src="/Wiki/public/img/' . $_SESSION['user_image'] . '"style="width:45px;height:45px;border-radius:50%;margin-left:60%;"></a>
             <ul>
-            <li><a href="#">View Profil</a></li>
+            <li><a href="profil">View Profil</a></li>
             <li><a href="logout">Logout</a></li>
           </ul>
             </li>';
@@ -185,7 +185,7 @@
           <div class="col-lg-3 col-md-6">
             <div class="count-box">
               <i class="bi bi-emoji-smile"></i>
-              <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1"
+              <span data-purecounter-start="0" data-purecounter-end="<?= $count_users[0]['users_count'] ?>" data-purecounter-duration="1"
                 class="purecounter"></span>
               <p>Happy Clients</p>
             </div>
@@ -194,27 +194,27 @@
           <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
             <div class="count-box">
               <i class="bi bi-journal-richtext"></i>
-              <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1"
+              <span data-purecounter-start="0" data-purecounter-end="<?= $count_cats[0]['categories_count'] ?>" data-purecounter-duration="1"
                 class="purecounter"></span>
-              <p>Projects</p>
+              <p>Total Categories</p>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
             <div class="count-box">
               <i class="bi bi-headset"></i>
-              <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1"
+              <span data-purecounter-start="0" data-purecounter-end="<?= $count_tags[0]['tags_count'] ?>" data-purecounter-duration="1"
                 class="purecounter"></span>
-              <p>Hours Of Support</p>
+              <p>Total Tags</p>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
             <div class="count-box">
               <i class="bi bi-people"></i>
-              <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1"
+              <span data-purecounter-start="0" data-purecounter-end="<?= $count_wikis[0]['accepted_wikis_count'] ?>" data-purecounter-duration="1"
                 class="purecounter"></span>
-              <p>Hard Workers</p>
+              <p>Accepted Wikis</p>
             </div>
           </div>
 

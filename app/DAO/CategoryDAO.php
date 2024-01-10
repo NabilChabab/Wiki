@@ -9,31 +9,30 @@ use App\database\Database;
 class CategoryDAO
 {
 
-    public static function addCategory($category){
-        try{
+    public static function addCategory($category)
+    {
+        try {
             $conn = Database::getInstance()->getConnection();
 
             $sql = "INSERT INTO `category` (`name`) VALUES (?)";
             $stmt = $conn->prepare($sql);
-            $stmt->bindParam(1,$category);
+            $stmt->bindParam(1, $category);
             $stmt->execute();
-    
-        }catch(\PDOException $e){
-            echo $e->getMessage();
+        } catch (\PDOException $e) {
+            throw new \PDOException($e->getMessage(), (int)$e->getCode());
         }
     }
 
-    public static function getAllCategories(){
-        try{
+    public static function getAllCategories()
+    {
+        try {
             $conn = Database::getInstance()->getConnection();
             $sql = "SELECT * FROM `category`";
             $stmt = $conn->prepare($sql);
             $stmt->execute();
-            $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-            return $result;
-        }
-        catch(\PDOException $e){
-            echo $e->getMessage();
+            return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        } catch (\PDOException $e) {
+            throw new \PDOException($e->getMessage(), (int)$e->getCode());
         }
     }
 
@@ -55,8 +54,7 @@ class CategoryDAO
 
             return false;
         } catch (\PDOException $e) {
-            echo $e->getMessage();
-            return false;
+            throw new \PDOException($e->getMessage(), (int)$e->getCode());
         }
     }
 
@@ -72,16 +70,13 @@ class CategoryDAO
 
             $result = $stmt->fetch(\PDO::FETCH_ASSOC);
 
-                return $result;
-            
+            return $result;
 
         } catch (\PDOException $e) {
-            echo $e->getMessage();
-            return false;
+            throw new \PDOException($e->getMessage(), (int)$e->getCode());
         }
     }
 
-    
     public static function updateCategory($categoryId, $newCategoryName)
     {
         try {
@@ -94,8 +89,7 @@ class CategoryDAO
             $stmt->execute();
             return true;
         } catch (\PDOException $e) {
-            echo $e->getMessage();
-            return false;
+            throw new \PDOException($e->getMessage(), (int)$e->getCode());
         }
     }
 }

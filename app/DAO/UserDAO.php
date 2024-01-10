@@ -61,4 +61,22 @@ class UserDAO
             echo "Error". $e->getMessage();
         }
     }
+
+    public static function getUserEmailByWikiId($wikiId)
+{
+    try {
+        $conn = Database::getInstance()->getConnection();
+        $sql = "SELECT u.email FROM `wiki` w JOIN `user` u ON w.user_id = u.id WHERE w.id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(1, $wikiId);
+        $stmt->execute();
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+        return $result['email'] ?? null;
+    } catch (\PDOException $e) {
+        echo $e->getMessage();
+        return null;
+    }
+}
+
 }

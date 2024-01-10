@@ -269,13 +269,27 @@
                                         <?= $catg['name'] ?>
                                     </td>
                                     <td>
-                                        <a href="editCat?id=<?= base64_encode($catg['id']) ?>"
-                                            style="color:black;font-size:20px;margin-right:20px"><ion-icon
-                                                name="pencil-outline"></ion-icon></a>
+                                        <a href="#" class="update-category" data-id="<?= $catg['id'] ?>"
+                                            style="color:black;font-size:20px;margin-right:20px">
+                                            <ion-icon name="pencil-outline"></ion-icon>
                                         </a>
+                                        <div id="updateCategoryModal<?= $catg['id'] ?>" class="modal">
+                                            <div class="modal-content">
+                                                <span class="close"
+                                                    onclick="closeModal('updateCategoryModal<?= $catg['id'] ?>')">&times;</span>
+                                                <h2 style="color:black;">Update Category</h2>
+                                                <form id="updateCategoryForm<?= $catg['id'] ?>" action="editcat?id=<?= base64_encode($catg['id']) ?>"
+                                                    method="Post">
+                                                    <label for="categoryName" style="color:black;">Category Name:</label>
+                                                    <input type="text" id="categoryName<?= $catg['id'] ?>" name="newCategory"
+                                                        value="<?= $catg['name'] ?>" required>
+                                                    <button name="update" type="submit">Update Category</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <a href="#" style="color:red;font-size:20px;">
+                                            <ion-icon name="close-circle-outline"></ion-icon>
                                         </a>
-                                        <a href="#" style="color:red;font-size:20px;"><ion-icon
-                                                name="close-circle-outline"></ion-icon></a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -349,6 +363,7 @@
             var modal = document.getElementById('addCategoryModal');
             var updateModal = document.getElementById('updateCategoryModal');
             var span = document.querySelector('.close');
+            var modals = document.querySelectorAll('.modal');
 
             // Open addCategoryModal
             var addButton = document.querySelector('.btn');
@@ -366,16 +381,38 @@
                 }
             };
 
-            // Open updateCategoryModal
             function openUpdateModal(categoryId) {
-                document.getElementById('newCategoryName').value = '';
-                document.getElementById('categoryId').value = categoryId;
                 updateModal.style.display = 'block';
             }
 
-            // Close updateCategoryModal
             function closeUpdateModal() {
                 updateModal.style.display = 'none';
+            }
+
+            var updatePencilIcons = document.querySelectorAll('.update-category');
+            updatePencilIcons.forEach(function (icon) {
+                icon.addEventListener('click', function () {
+                    var categoryId = icon.dataset.id;
+                    openModal('updateCategoryModal' + categoryId);
+                });
+            });
+
+            function openModal(modalId) {
+                var modal = document.getElementById(modalId);
+                modal.style.display = 'block';
+            }
+
+            function closeModal(modalId) {
+                var modal = document.getElementById(modalId);
+                modal.style.display = 'none';
+            }
+            var updateCloseButton = document.querySelector('.update-close-btn');
+            updateCloseButton.onclick = function () {
+                closeUpdateModal();
+            };
+
+            function closeModal() {
+                modal.style.display = 'none';
             }
         });
 
