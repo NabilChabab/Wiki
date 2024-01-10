@@ -29,16 +29,16 @@
 </head>
 
 <style>
-  .search{
+  .search {
     position: relative;
     width: 300px;
     border: none;
     border-radius: 27px;
     padding: 10px;
     font-size: 15px;
-}
+  }
 
-.icon{
+  .icon {
     background-color: transparent;
     width: 45px;
     height: 40px;
@@ -52,7 +52,35 @@
     position: absolute;
     top: 0%;
     right: 0%;
-}
+  }
+
+  .title {
+    z-index: 100001;
+    color: rgba(1, 3, 91, 0.9);
+    position: absolute;
+    top: 50%;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bold;
+
+  }
+
+  .sub {
+    z-index: 100001;
+    color: white;
+    position: absolute;
+    top: 60%;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: bold;
+
+  }
+  .img-fluid{
+    filter: brightness(50%);
+  }
+  .img-fluid:hover{
+    filter: brightness(100%);
+  }
 </style>
 
 <body>
@@ -64,11 +92,11 @@
         <h1><a href="index.html"><span>Wiki Wiki</span></a></h1>
       </div>
       <div class="search">
-                <input type="text" placeholder="Search" class="search" id="searchInput" oninput="searchCards()">
-                <div class="icon">
-                    <i class='bx bx-search-alt'></i>
-                </div>
-            </div>
+        <input type="text" placeholder="Search" class="search" id="searchInput">
+        <div class="icon">
+          <i class='bx bx-search-alt'></i>
+        </div>
+      </div>
 
       <nav id="navbar" class="navbar">
         <ul>
@@ -185,8 +213,8 @@
           <div class="col-lg-3 col-md-6">
             <div class="count-box">
               <i class="bi bi-emoji-smile"></i>
-              <span data-purecounter-start="0" data-purecounter-end="<?= $count_users[0]['users_count'] ?>" data-purecounter-duration="1"
-                class="purecounter"></span>
+              <span data-purecounter-start="0" data-purecounter-end="<?= $count_users[0]['users_count'] ?>"
+                data-purecounter-duration="1" class="purecounter"></span>
               <p>Happy Clients</p>
             </div>
           </div>
@@ -194,8 +222,8 @@
           <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
             <div class="count-box">
               <i class="bi bi-journal-richtext"></i>
-              <span data-purecounter-start="0" data-purecounter-end="<?= $count_cats[0]['categories_count'] ?>" data-purecounter-duration="1"
-                class="purecounter"></span>
+              <span data-purecounter-start="0" data-purecounter-end="<?= $count_cats[0]['categories_count'] ?>"
+                data-purecounter-duration="1" class="purecounter"></span>
               <p>Total Categories</p>
             </div>
           </div>
@@ -203,8 +231,8 @@
           <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
             <div class="count-box">
               <i class="bi bi-headset"></i>
-              <span data-purecounter-start="0" data-purecounter-end="<?= $count_tags[0]['tags_count'] ?>" data-purecounter-duration="1"
-                class="purecounter"></span>
+              <span data-purecounter-start="0" data-purecounter-end="<?= $count_tags[0]['tags_count'] ?>"
+                data-purecounter-duration="1" class="purecounter"></span>
               <p>Total Tags</p>
             </div>
           </div>
@@ -212,8 +240,8 @@
           <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
             <div class="count-box">
               <i class="bi bi-people"></i>
-              <span data-purecounter-start="0" data-purecounter-end="<?= $count_wikis[0]['accepted_wikis_count'] ?>" data-purecounter-duration="1"
-                class="purecounter"></span>
+              <span data-purecounter-start="0" data-purecounter-end="<?= $count_wikis[0]['accepted_wikis_count'] ?>"
+                data-purecounter-duration="1" class="purecounter"></span>
               <p>Accepted Wikis</p>
             </div>
           </div>
@@ -230,25 +258,25 @@
 
       <section id="gallery" class="gallery">
 
-      <div class="container">
-        <div class="section-title d-flex justify-content-between align-items-center" data-aos="fade-up">
-          <div>
-            <h2>Wikis</h2>
-            <p>Check Your Wikis</p>
+        <div class="container">
+          <div class="section-title d-flex justify-content-between align-items-center" data-aos="fade-up">
+            <div>
+              <h2>Wikis</h2>
+              <p>Check Your Wikis</p>
+            </div>
+
+            <a href="addwiki" class="btn btn-dark" style="width:150px; height:40px;">Add Wiki</a>
+
           </div>
-         
-          <a href="addwiki" class="btn btn-dark" style="width:150px; height:40px;">Add Wiki</a>
-        
-        </div>
 
 
-        <div class="row g-0" data-aos="fade-left">
-          <?php
+          <div class="row g-0" data-aos="fade-left">
+            <?php
             foreach ($wikis as $wiki):
               ?>
               <div class="col-lg-3 col-md-4">
                 <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
-                  <a href="wiki_details?id=<?= base64_encode($wiki['id'])?>">
+                  <a href="wiki_details?id=<?= base64_encode($wiki['id']) ?>">
                     <?php if (isset($wiki['image'])): ?>
                       <img src="/Wiki/public/img/gallery/<?= $wiki['image'] ?>" alt="" class="img-fluid">
                     <?php else: ?>
@@ -259,14 +287,14 @@
               </div>
               <?php
             endforeach;
-          ?>
-        </div>
+            ?>
+          </div>
 
-      </div>
-    </section>
-    <?php endif;?>
+        </div>
+      </section>
+    <?php endif; ?>
+
     
-          
     <section id="gallery" class="gallery">
 
       <div class="container">
@@ -274,28 +302,36 @@
           <div>
             <h2>Wikis</h2>
             <p>Check our Wikis</p>
-          </div>          
+          </div>
         </div>
+        <div class="row g-0" data-aos="fade-left" id="searchResults">
+          </div>
 
 
-        <div class="row g-0" data-aos="fade-left">
+        <div class="row g-0" data-aos="fade-left" id="searchResults">
           <?php
           $counter = 0;
-            foreach ($allwikis as $allwiki): ?>
-              <div class="col-lg-3 col-md-4">
-                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
-                  <a href="wiki_details?id=<?= base64_encode($allwiki['id'])?>">
-                    <img src="/Wiki/public/img/gallery/<?= $allwiki['image'] ?>" alt="" class="img-fluid">
-                  </a>
-                </div>
+          foreach ($allwikis as $allwiki): ?>
+            <div class="col-lg-3 col-md-4">
+              <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
+                <a href="wiki_details?id=<?= base64_encode($allwiki['id']) ?>">
+                  <img src="/Wiki/public/img/gallery/<?= $allwiki['image'] ?>" alt="" class="img-fluid">
+                </a>
+                <p class="title">
+                  <?= $allwiki['title'] ?>
+                </p>
+                <p class="sub">
+                  <?= $allwiki['category_name'] ?>
+                </p>
               </div>
-              <?php
-              $counter++;
-              if ($counter >= 4) {
-                break;
-              }
-            endforeach;
-          ?>
+            </div>
+            <?php
+            $counter++;
+            if ($counter >= 4) {
+              break;
+            }
+          endforeach;
+          ?> 
         </div>
 
       </div>
@@ -619,6 +655,53 @@
 
   <!-- Template Main JS File -->
   <script src="/Wiki/public/js/main.js"></script>
+
+  <script>
+  const searchInput = document.getElementById('searchInput');
+  const searchResults = document.getElementById('searchResults');
+
+  searchInput.addEventListener('input', handleSearch);
+
+  async function handleSearch(e) {
+    try {
+      const query = e.target.value;
+      const data = await fetchData(query);
+      updateResults(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function fetchData(query) {
+    const response = await fetch('search?q=' + encodeURIComponent(query));
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return response.text();
+  }
+
+  function updateResults(data) {
+    const results = JSON.parse(data);
+
+    searchResults.innerHTML = '';
+
+    results.forEach(item => {
+      const card = document.createElement('div');
+      card.className = 'col-lg-3 col-md-4';
+      card.innerHTML = `
+        <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
+          <a href="wiki_details?id=${btoa(item.id)}">
+            ${item.image ? `<img src="/Wiki/public/img/gallery/${item.image}" alt="" class="img-fluid">` : '<h1 class="message">Wait till Wikis Team Accept Your Wiki</h1>'}
+          </a>
+          <p class="title">${item.title}</p>
+          <p class="sub">${item.category_name}</p>
+        </div>
+      `;
+      searchResults.appendChild(card);
+    });
+  }
+</script>
+
 
 </body>
 

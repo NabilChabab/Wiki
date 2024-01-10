@@ -128,8 +128,8 @@
                                         </div>
                                     </div>
                                     <div class="mb-5">
-                                        <a href="#" class="btn btn-primary">Update</a>
-                                        <a href="#" class="btn btn-danger">Delete</a>
+                                        <a href="update?id=<?= base64_encode($wiki['id']) ?>" class="btn btn-primary">Update</a>
+                                        <a href="delete?id=<?= base64_encode($wiki['id']) ?>" class="btn btn-danger">Delete</a>
                                     </div>
                                     <?php
                                     $counter++;

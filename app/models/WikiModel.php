@@ -29,13 +29,29 @@ class WikiModel
     }
 
     public static function getWikiById($id){
-        $wiki = WikiDAO::getWikisById($id);
-        return  $wiki ? $wiki : null;
+        $result = WikiDAO::getWikisById($id);
+        return $result;
+        
     }
 
     public static function updateWiki($wikiId , $status){
         WikiDAO::updateWiki($wikiId , $status);
         
+    }
+
+    public static function updateWikisForAuthor($wikiId, $title, $category, $tags, $image, $description, $user_id)
+    {
+        $updated = WikiDAO::updateWikisForAuthor($wikiId, $title, $category, $image, $description, $user_id, $tags);
+
+        if ($updated) {
+            WikiDAO::addTagsForWiki($wikiId, $tags);
+        }
+
+        return $updated;
+    }
+
+    public static function deleteWiki($id){
+        WikiDAO::deleteWiki($id);
     }
 
 }
