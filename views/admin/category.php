@@ -1,4 +1,8 @@
-<?php session_start(); ?>
+<?php session_start();
+ if(empty($_SESSION['role'])){
+    header('location:signin');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 

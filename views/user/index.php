@@ -308,7 +308,7 @@
           </div>
 
 
-        <div class="row g-0" data-aos="fade-left" id="searchResults">
+        <div class="row g-0" data-aos="fade-left" id="otherdiv">
           <?php
           $counter = 0;
           foreach ($allwikis as $allwiki): ?>
@@ -659,6 +659,7 @@
   <script>
   const searchInput = document.getElementById('searchInput');
   const searchResults = document.getElementById('searchResults');
+  const otherdiv = document.getElementById('otherdiv');
 
   searchInput.addEventListener('input', handleSearch);
 
@@ -684,6 +685,7 @@
     const results = JSON.parse(data);
 
     searchResults.innerHTML = '';
+    otherdiv.style.display = 'none';
 
     results.forEach(item => {
       const card = document.createElement('div');

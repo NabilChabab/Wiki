@@ -46,6 +46,7 @@ class UserController
 
     public function login()
     {
+        
         include '../../views/auth/login.php';
         exit();
     }
