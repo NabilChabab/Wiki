@@ -118,7 +118,7 @@
                                 unset($_SESSION['error_message']);
                             }
                             ?>
-                            <form action="signup" enctype="multipart/form-data" method="POST">
+                            <form action="signup" enctype="multipart/form-data" method="POST" id="form">
                                 <div class="card">
                                     <img src="/Wiki/public/img/avatar.jpg" id="image">
                                     <label for="input-file">Choose Image</label>
@@ -128,7 +128,7 @@
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <div class="form-outline">
-                                            <input type="text" id="firstname" class="form-control"
+                                            <input type="text" id="fullname" class="form-control"
                                                 placeholder="FullName" name="fullname" />
                                             <p class="fname-error text-danger"></p>
                                         </div>

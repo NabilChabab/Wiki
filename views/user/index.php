@@ -24,63 +24,13 @@
   <link href="/Wiki/public/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <link href="/Wiki/public/css/style.css" rel="stylesheet">
+  <link href="/Wiki/public/css/index.css" rel="stylesheet">
 
 
 </head>
 
 <style>
-  .search {
-    position: relative;
-    width: 300px;
-    border: none;
-    border-radius: 27px;
-    padding: 10px;
-    font-size: 15px;
-  }
 
-  .icon {
-    background-color: transparent;
-    width: 45px;
-    height: 40px;
-    font-size: 20px;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 10px;
-    border-radius: 28px;
-    position: absolute;
-    top: 0%;
-    right: 0%;
-  }
-
-  .title {
-    z-index: 100001;
-    color: rgba(1, 3, 91, 0.9);
-    position: absolute;
-    top: 50%;
-    padding: 10px;
-    font-size: 20px;
-    font-weight: bold;
-
-  }
-
-  .sub {
-    z-index: 100001;
-    color: white;
-    position: absolute;
-    top: 60%;
-    padding: 10px;
-    font-size: 15px;
-    font-weight: bold;
-
-  }
-  .img-fluid{
-    filter: brightness(50%);
-  }
-  .img-fluid:hover{
-    filter: brightness(100%);
-  }
 </style>
 
 <body>
@@ -278,7 +228,7 @@
                 <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
                   <a href="wiki_details?id=<?= base64_encode($wiki['id']) ?>">
                     <?php if (isset($wiki['image'])): ?>
-                      <img src="/Wiki/public/img/gallery/<?= $wiki['image'] ?>" alt="" class="img-fluid">
+                      <img src="/Wiki/public/img/gallery/<?= $wiki['image'] ?>" alt="" class="img-fluid cards">
                     <?php else: ?>
                       <h1 class="message">Wait till Wikis Team Accept Your Wiki</h1>
                     <?php endif; ?>
@@ -315,7 +265,7 @@
             <div class="col-lg-3 col-md-4">
               <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
                 <a href="wiki_details?id=<?= base64_encode($allwiki['id']) ?>">
-                  <img src="/Wiki/public/img/gallery/<?= $allwiki['image'] ?>" alt="" class="img-fluid">
+                  <img src="/Wiki/public/img/gallery/<?= $allwiki['image'] ?>" alt="" class="img-fluid cards">
                 </a>
                 <p class="title">
                   <?= $allwiki['title'] ?>
@@ -422,7 +372,7 @@
     </section><!-- End Testimonials Section -->
     <!-- ======= F.A.Q Section ======= -->
     <section id="faq" class="faq">
-      <div class="container" style="background-colo:white;">
+      <div class="container" style="background-color:white;">
 
         <div class="section-title" data-aos="fade-up">
           <h2>F.A.Q</h2>
@@ -655,54 +605,7 @@
 
   <!-- Template Main JS File -->
   <script src="/Wiki/public/js/main.js"></script>
-
-  <script>
-  const searchInput = document.getElementById('searchInput');
-  const searchResults = document.getElementById('searchResults');
-  const otherdiv = document.getElementById('otherdiv');
-
-  searchInput.addEventListener('input', handleSearch);
-
-  async function handleSearch(e) {
-    try {
-      const query = e.target.value;
-      const data = await fetchData(query);
-      updateResults(data);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  async function fetchData(query) {
-    const response = await fetch('search?q=' + encodeURIComponent(query));
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    return response.text();
-  }
-
-  function updateResults(data) {
-    const results = JSON.parse(data);
-
-    searchResults.innerHTML = '';
-    otherdiv.style.display = 'none';
-
-    results.forEach(item => {
-      const card = document.createElement('div');
-      card.className = 'col-lg-3 col-md-4';
-      card.innerHTML = `
-        <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
-          <a href="wiki_details?id=${btoa(item.id)}">
-            ${item.image ? `<img src="/Wiki/public/img/gallery/${item.image}" alt="" class="img-fluid">` : '<h1 class="message">Wait till Wikis Team Accept Your Wiki</h1>'}
-          </a>
-          <p class="title">${item.title}</p>
-          <p class="sub">${item.category_name}</p>
-        </div>
-      `;
-      searchResults.appendChild(card);
-    });
-  }
-</script>
+  <script src="/Wiki/public/js/index.js"></script>
 
 
 </body>

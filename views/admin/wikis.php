@@ -30,7 +30,7 @@
 <body>
     <!-- =============== Navigation ================ -->
     <div class="container">
-        <div class="navigation active" style="">
+        <div class="navigation active">
             <ul>
                 <li>
                     <a href="#">

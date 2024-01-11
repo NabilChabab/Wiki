@@ -112,7 +112,6 @@ class WikiDAO
             $stmt->bindParam(2, $wikiId);
             $stmt->execute();
 
-            // Fetch user email
             $userEmail = self::getUserEmailByWikiId($wikiId);
 
             if ($userEmail) {

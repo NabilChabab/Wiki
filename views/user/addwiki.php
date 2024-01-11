@@ -27,80 +27,10 @@
 
     <link href="/Wiki/public/css/style.css" rel="stylesheet">
     <link href="/Wiki/public/css/details.css" rel="stylesheet">
+    <link href="/Wiki/public/css/addwiki.css" rel="stylesheet">
 
     <style>
-        .card {
-            width: 100%;
-            border: none;
-            background-color: transparent;
-            border: none;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
 
-        .card label {
-            margin-top: 30px;
-            text-align: center;
-            height: 40px;
-            cursor: pointer;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        .card input {
-            display: none;
-        }
-
-        .form-group input {
-
-            width: 100%;
-            border: none;
-            margin-bottom: 2%;
-            padding: 20px;
-            border-radius: 15px;
-
-        }
-
-        .form-group select {
-
-            width: 100%;
-            border: none;
-            margin-bottom: 2%;
-            padding: 20px;
-            border-radius: 15px;
-
-        }
-
-        .form-group textarea {
-            margin-top: 10%;
-        }
-
-        form button {
-            background-color: rgba(1, 3, 91, 0.9);
-            color: white;
-            font-weight: bold;
-            padding: 10px 20px;
-            border-radius: 10px;
-            margin-top: 2%;
-        }
-
-        .selected-tag {
-            display: inline-block;
-            margin: 5px;
-            padding: 5px 10px;
-            background-color: rgba(1, 3, 91, 0.9);
-            color: #fff;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .select2{
-            width: 100%;
-            border: none;
-            margin-bottom: 2%;
-            border-radius: 15px;
-        }
     </style>
 </head>
 
@@ -447,43 +377,7 @@
         referrerpolicy="origin"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-
-
-    <script>
-        $(document).ready(function () {
-            $('.select2').select2();
-
-            $('.select2').on('select2:select', function (e) {
-                const selectedTag = e.params.data.text;
-
-                $('#tag-container').append('<div class="selected-tag">' + selectedTag + '</div>');
-            });
-        });
-    </script>
-
-
-    <script>
-        tinymce.init({
-            selector: 'textarea',
-            plugins: 'ai tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
-            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-            tinycomments_mode: 'embedded',
-            tinycomments_author: 'Author name',
-            mergetags_list: [
-                { value: 'First.Name', title: 'First Name' },
-                { value: 'Email', title: 'Email' },
-            ],
-            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
-        });
-    </script>
-    <script>
-        let image = document.getElementById("image");
-        let input = document.getElementById("input-file");
-
-        input.onchange = () => {
-            image.src = URL.createObjectURL(input.files[0]);
-        }
-    </script>
+    <script src="/Wiki/public/js/addwiki.js"></script>
 
 </body>
 

@@ -92,27 +92,29 @@ class HomeController
     }
 
     public function updatewk()
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['updatewiki'])) {
-            $wikiId = base64_decode($_GET['id']);
-            $title = $_POST['title'];
-            $category = $_POST['category'];
-            $tags = $_POST['tags'];
-            $tags = isset($_POST['tags']) ? $_POST['tags'] : array(); 
-            $file_name = $_FILES['image']['name'];
-            $file_temp = $_FILES['image']['tmp_name'];
-            $upload_image = "" . $file_name;
-            $description = $_POST['description'];
-            $user_id = $_SESSION['user_id'];
-            $resulr = move_uploaded_file($file_temp, $upload_image);
-            if ($resulr) {
-                WikiModel::updateWikisForAuthor($wikiId,$title, $category, $tags, $upload_image, $description ,$user_id);
-                header("Location: home"); 
-                exit();
-            } else {
-            }
+{
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['updatewiki'])) {
+        $wikiId = base64_decode($_GET['id']);
+        $title = $_POST['title'];
+        $category = $_POST['category'];
+        $tags = isset($_POST['tags']) && is_array($_POST['tags']) ? $_POST['tags'] : array(); 
+        $file_name = $_FILES['image']['name'];
+        $file_temp = $_FILES['image']['tmp_name'];
+        $upload_image = "" . $file_name;
+        $description = $_POST['description'];
+        $user_id = $_SESSION['user_id'];
+        $resulr = move_uploaded_file($file_temp, $upload_image);
+
+        if ($resulr) {
+            WikiModel::updateWikisForAuthor($wikiId, $title, $category, $tags, $upload_image, $description, $user_id);
+            header("Location: home"); 
+            exit();
+        } else {
+           
         }
     }
+}
+
 
     public function deletewiki(){
         if (isset($_GET['id'])) {

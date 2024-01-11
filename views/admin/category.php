@@ -13,87 +13,14 @@
     <title>Admin Dashboard</title>
     <!-- ======= Styles ====== -->
     <link rel="stylesheet" href="/Wiki/public/css/admin.css">
+    <link rel="stylesheet" href="/Wiki/public/css/cat.css">
 
 </head>
-<style>
-    .admin {
-        display: flex;
-        gap: 1rem;
-    }
-
-    .name p {
-        font-weight: bold;
-        color: grey;
-    }
-
-    .modal {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: 100001;
-    }
-
-    .modal-content {
-        background-color: #fff;
-        margin: 10% auto;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 50%;
-        border-radius: 15px;
-    }
-
-    .close {
-        color: #aaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-        cursor: pointer;
-    }
-
-    h2 {
-        text-align: center;
-        margin-bottom: 20px;
-    }
-
-    label {
-        display: block;
-        margin-bottom: 8px;
-    }
-
-    input {
-        width: 100%;
-        padding: 8px;
-        margin-bottom: 16px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-    }
-
-    button {
-        background-color: #00023A;
-        color: #fff;
-        padding: 10px 15px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 16px;
-        display: block;
-        margin: 0 auto;
-    }
-
-    button:hover {
-        background-color: #45a049;
-    }
-</style>
 
 <body>
     <!-- =============== Navigation ================ -->
     <div class="container">
-        <div class="navigation active" style="">
+        <div class="navigation active">
             <ul>
                 <li>
                     <a href="#">
@@ -361,129 +288,7 @@
 
     <!-- =========== Scripts =========  -->
     <script src="/Wiki/public/js/admin.js"></script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var modal = document.getElementById('addCategoryModal');
-            var updateModal = document.getElementById('updateCategoryModal');
-            var span = document.querySelector('.close');
-            var modals = document.querySelectorAll('.modal');
-
-            // Open addCategoryModal
-            var addButton = document.querySelector('.btn');
-            addButton.onclick = function () {
-                modal.style.display = 'block';
-            };
-
-            span.onclick = function () {
-                closeModal();
-            };
-
-            window.onclick = function (event) {
-                if (event.target == modal) {
-                    closeModal();
-                }
-            };
-
-            function openUpdateModal(categoryId) {
-                updateModal.style.display = 'block';
-            }
-
-            function closeUpdateModal() {
-                updateModal.style.display = 'none';
-            }
-
-            var updatePencilIcons = document.querySelectorAll('.update-category');
-            updatePencilIcons.forEach(function (icon) {
-                icon.addEventListener('click', function () {
-                    var categoryId = icon.dataset.id;
-                    openModal('updateCategoryModal' + categoryId);
-                });
-            });
-
-            function openModal(modalId) {
-                var modal = document.getElementById(modalId);
-                modal.style.display = 'block';
-            }
-
-            function closeModal(modalId) {
-                var modal = document.getElementById(modalId);
-                modal.style.display = 'none';
-            }
-            var updateCloseButton = document.querySelector('.update-close-btn');
-            updateCloseButton.onclick = function () {
-                closeUpdateModal();
-            };
-
-            function closeModal() {
-                modal.style.display = 'none';
-            }
-        });
-
-
-    </script>
-
-
-
-
-
-    <!-- <script>
-        var modal = document.getElementById('addCategoryModal');
-
-        var addButton = document.querySelector('.btn');
-
-        var span = document.querySelector('.close');
-
-        addButton.onclick = function () {
-            modal.style.display = 'block';
-        };
-
-        span.onclick = function () {
-            closeModal();
-        };
-
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                closeModal();
-            }
-        };
-
-        function closeModal() {
-            modal.style.display = 'none';
-        }
-    </script> -->
-
-    <script>
-        var modalTag = document.getElementById('addTagModal');
-        var addButtonTag = document.querySelectorAll('.btn')[1];  // Selecting the second .btn element
-        var spanTag = document.querySelectorAll('.close')[1];  // Selecting the second .close element
-
-        addButtonTag.onclick = function () {
-            modalTag.style.display = 'block';
-        };
-
-        spanTag.onclick = function () {
-            closeModalTag();
-        };
-
-        window.onclick = function (event) {
-            if (event.target == modalTag) {
-                closeModalTag();
-            }
-        };
-
-        function closeModalTag() {
-            modalTag.style.display = 'none';
-        }
-    </script>
-
-
-
-
-
-
-
-    <!-- ====== ionicons ======= -->
+    <script src="/Wiki/public/js/cat.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
