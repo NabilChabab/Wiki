@@ -11,42 +11,31 @@ require_once '../../vendor/autoload.php';
 
 class AdminController
 {
-
-    public function admin($users)
-    {
-        include '../../views/admin/home.php';
-        exit();
-    }
-    public function category($category , $tags)
-    {
-        include '../../views/admin/category.php';
-        exit();
-    }
+    
     public function tags()
     {
         include '../../views/admin/home.php';
         exit();
     }
-    public function wikis($wikis)
-    {
-        include '../../views/admin/wikis.php';
-        exit();
-    }
-
+    
     public function allusers(){
         $users = UserModel::getAllUsers();
-        $this->admin($users);
+        include '../../views/admin/home.php';
+        exit();
     }
 
     public function allCategories(){
         $category = CategoryModel::getAllCategories();
         $tags = TagModel::getAllTags();
-        $this->category($category , $tags);
+        include '../../views/admin/category.php';
+        exit();
+      
     }
     public function allwikis(){
         
         $wikis = WikiModel::getAllWikis();
-        $this->wikis($wikis);
+        include '../../views/admin/wikis.php';
+        exit();
     }
 
     public function getWikisById(){

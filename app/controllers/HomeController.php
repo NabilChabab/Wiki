@@ -24,12 +24,13 @@ class HomeController
             $upload_image = "" . $file_name;
             $description = $_POST['description'];
             $user_id = $_SESSION['user_id'];
-            $resulr = move_uploaded_file($file_temp, $upload_image);
-            if ($resulr) {
+            $result = move_uploaded_file($file_temp, $upload_image);
+            if ($result) {
                 WikiModel::addWikiWithTags($title, $category, $tags, $upload_image, $description ,$user_id);
-                header("Location: home"); 
-                exit();
-            } else {
+                    $_SESSION['wiki_added'] = true;
+                    header("Location: home");
+                    exit();
+                } else {
             }
         }
     }

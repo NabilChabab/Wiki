@@ -27,7 +27,7 @@ CREATE TABLE Wiki (
     description TEXT,
     image VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    status status VARCHAR(10) CHECK (status IN ('Pending', 'Accept', 'Refuse')),
+    status status VARCHAR(200),
     user_id INT,
     category_id INT,
     FOREIGN KEY (user_id) REFERENCES User(id) ON DELETE SET NULL,

@@ -30,7 +30,19 @@
 </head>
 
 <style>
+  .modal-header .close {
+    padding: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #28a745; /* Change the color as needed */
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
 
+.modal-header .close:hover {
+    opacity: 1;
+}
 </style>
 
 <body>
@@ -578,7 +590,24 @@
         </div>
       </div>
     </div>
+    <div class="modal" id="successModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
 
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title text-success">Success!</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body text-dark">
+                Your Wiki has been added successfully! Please wait until the support team accepts your wiki. It may take a few hours for the response.
+            </div>
+
+        </div>
+    </div>
+</div>
     <div class="container">
       <div class="copyright">
         &copy; Copyright <strong><span>Bootslander</span></strong>. All Rights Reserved
@@ -603,10 +632,23 @@
   <script src="/Wiki/public/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="/Wiki/public/vendor/php-email-form/validate.js"></script>
 
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
   <!-- Template Main JS File -->
   <script src="/Wiki/public/js/main.js"></script>
   <script src="/Wiki/public/js/index.js"></script>
-
+  <?php
+if (isset($_SESSION['wiki_added']) && $_SESSION['wiki_added']) {
+    echo '<script>
+    $(document).ready(function() {
+        $("#successModal").modal("show");
+    });
+</script>';
+    unset($_SESSION['wiki_added']);
+}
+?>
 
 </body>
 
