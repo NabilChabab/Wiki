@@ -132,8 +132,9 @@ class HomeController
             $query = $_GET['q'];
             $conn = Database::getInstance()->getConnection();
             $sql = "SELECT w.*, c.name as category_name
-            FROM `wiki` w 
-            JOIN `category` c ON w.category_id = c.id WHERE w.title LIKE :query";
+            FROM `wiki` w
+            JOIN `category` c ON w.category_id = c.id
+            WHERE w.title LIKE :query OR c.name LIKE :query";
             $stmt = $conn->prepare($sql);
             $stmt->execute(['query' => '%' . $query . '%']);
             $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);

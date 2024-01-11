@@ -115,7 +115,6 @@ class WikiDAO
             $userEmail = self::getUserEmailByWikiId($wikiId);
 
             if ($userEmail) {
-                // Send email notification
                 $subject = 'Wiki Status Update';
                 $message = "Your wiki status has been updated to $status.";
 

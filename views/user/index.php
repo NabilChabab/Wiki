@@ -105,7 +105,7 @@
             <h1>Make Your Perfect Blog With <span>Wiki</span></h1>
             <h2>All on One Platform</h2>
             <div class="text-center text-lg-start">
-              <a href="#about" class="btn-get-started bg-dark scrollto">Get Started</a>
+              <a href="#about" class="btn-get-started bg-dark scrollto">Get News</a>
             </div>
           </div>
         </div>
@@ -308,8 +308,8 @@
 
             <div class="swiper-slide">
               <div class="testimonial-item">
-                <img src="/Wiki/public/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-                <h3>Saul Goodman</h3>
+                <img src="/Wiki/public/img/me.jpg" class="testimonial-img" alt="">
+                <h3>CHABAB Nabil</h3>
                 <h4>Ceo &amp; Founder</h4>
                 <p>
                   <i class="bx bxs-quote-alt-left quote-icon-left"></i>
@@ -322,8 +322,8 @@
 
             <div class="swiper-slide">
               <div class="testimonial-item">
-                <img src="/Wiki/public/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-                <h3>Sara Wilsson</h3>
+                <img src="/Wiki/public/img/l-alaoui.jpg" class="testimonial-img" alt="">
+                <h3>Aicha Louafi</h3>
                 <h4>Designer</h4>
                 <p>
                   <i class="bx bxs-quote-alt-left quote-icon-left"></i>
@@ -336,8 +336,8 @@
 
             <div class="swiper-slide">
               <div class="testimonial-item">
-                <img src="/Wiki/public/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-                <h3>Jena Karlis</h3>
+                <img src="/Wiki/public/img/a-elbari.jpg" class="testimonial-img" alt="">
+                <h3>Abdelhamid</h3>
                 <h4>Store Owner</h4>
                 <p>
                   <i class="bx bxs-quote-alt-left quote-icon-left"></i>
@@ -350,8 +350,8 @@
 
             <div class="swiper-slide">
               <div class="testimonial-item">
-                <img src="/Wiki/public/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-                <h3>Matt Brandon</h3>
+                <img src="/Wiki/public/img/avatar.jpg" class="testimonial-img" alt="">
+                <h3>Also Me</h3>
                 <h4>Freelancer</h4>
                 <p>
                   <i class="bx bxs-quote-alt-left quote-icon-left"></i>
@@ -361,21 +361,6 @@
                 </p>
               </div>
             </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img src="/Wiki/public/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-                <h3>John Larson</h3>
-                <h4>Entrepreneur</h4>
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa
-                  labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-              </div>
-            </div><!-- End testimonial item -->
-
           </div>
           <div class="swiper-pagination"></div>
         </div>
@@ -537,7 +522,7 @@
 
           <div class="col-lg-4 col-md-6">
             <div class="footer-info">
-              <h3>Bootslander</h3>
+              <h3>WIKI WIKI</h3>
               <p class="pb-3"><em>Qui repudiandae et eum dolores alias sed ea. Qui suscipit veniam excepturi quod.</em>
               </p>
               <p>
