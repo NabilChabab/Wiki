@@ -23,6 +23,7 @@ $router->setRoutes([
         'profil'=> ['UserController','profil'],
         'update'=> ['HomeController','updatewiki'],
         'delete'=> ['HomeController','deletewiki'],
+        'deletewk'=> ['HomeController','deletewikiForAdmin'],
       
     ],
     'POST' => [

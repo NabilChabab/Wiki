@@ -125,6 +125,14 @@ class HomeController
         }
     }
 
+    public function deletewikiForAdmin(){
+        if (isset($_GET['id'])) {
+            $id = base64_decode($_GET['id']);
+            WikiModel::deleteWiki($id);
+            header("Location: wikis"); 
+        }
+    }
+
     public static function fetchWikis()
     {
 

@@ -186,7 +186,7 @@
                                     </td>
                                     <td>
                                         <a href="edit?id=<?= base64_encode($wik['id'])?>" style="color:black;font-size:20px;margin-right:20px"><ion-icon name="eye-off-outline"></ion-icon></a>
-                                        <a href="#" style="color:red;font-size:20px;"><ion-icon
+                                        <a href="deletewk?id=<?= base64_encode($wik['id']) ?>" style="color:red;font-size:20px;"><ion-icon
                                                 name="close-circle-outline"></ion-icon></a>
                                     </td>
                                 </tr>
