@@ -110,7 +110,7 @@
           </div>
         </div>
         <div class="col-lg-4 order-1 order-lg-2 hero-img" data-aos="zoom-out" data-aos-delay="300">
-          <img src="/Wiki/public/img/hero1.png" class="img-fluid animated" alt="">
+          <img src="/Wiki/public/img/logo4.png" class="img-fluid animated" alt="" style="width:100%">
         </div>
       </div>
     </div>
