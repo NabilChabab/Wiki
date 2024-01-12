@@ -28,12 +28,7 @@ class WikiDAO
 
             $sql = "INSERT INTO `wiki` (`title`, `description`, `image`, `user_id`, `category_id`) VALUES (?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($sql);
-            $stmt->bindParam(1, $title);
-            $stmt->bindParam(2, $description);
-            $stmt->bindParam(3, $image);
-            $stmt->bindParam(4, $user_id);
-            $stmt->bindParam(5, $categoryId);
-            $stmt->execute();
+            $stmt->execute([$title , $description , $image , $user_id , $categoryId]);
             $lastid = $conn->lastInsertId();
             self::addTagsForWiki($lastid, $tags);
         } catch (\PDOException $e) {
@@ -55,9 +50,7 @@ class WikiDAO
                 if ($tagId !== null) {
                     $sql = "INSERT INTO `wiki_tag` (`wiki_id`, `tag_id`) VALUES (?, ?)";
                     $stmt = $conn->prepare($sql);
-                    $stmt->bindParam(1, $wikiId);
-                    $stmt->bindParam(2, $tagId);
-                    $stmt->execute();
+                    $stmt->execute([$wikiId , $tagId]);
                 } else {
                     echo "Error: Tag not found - $tag";
                 }
@@ -92,8 +85,7 @@ class WikiDAO
             $conn = Database::getInstance()->getConnection();
             $sql = "SELECT * FROM `wiki` WHERE user_id = ? AND status = 'Accepted'";
             $stmt = $conn->prepare($sql);
-            $stmt->bindParam(1, $userId);
-            $stmt->execute();
+            $stmt->execute([$userId]);
             $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
             return $result;
         } catch (\PDOException $e) {
@@ -108,10 +100,7 @@ class WikiDAO
             $conn = Database::getInstance()->getConnection();
             $sql = "UPDATE `wiki` SET `status` = ? WHERE `id` = ?";
             $stmt = $conn->prepare($sql);
-            $stmt->bindParam(1, $status);
-            $stmt->bindParam(2, $wikiId);
-            $stmt->execute();
-
+            $stmt->execute([$status , $wikiId]);
             $userEmail = self::getUserEmailByWikiId($wikiId);
 
             if ($userEmail) {
@@ -141,13 +130,7 @@ class WikiDAO
     
             $sql = "UPDATE `wiki` SET `title` = ?, `description` = ?, `image` = ?, `user_id` = ?, `category_id` = ? WHERE `id` = ?";
             $stmt = $conn->prepare($sql);
-            $stmt->bindParam(1, $title);
-            $stmt->bindParam(2, $description);
-            $stmt->bindParam(3, $image);
-            $stmt->bindParam(4, $user_id);
-            $stmt->bindParam(5, $categoryId);
-            $stmt->bindParam(6, $wikiId);
-            $stmt->execute();
+            $stmt->execute([$title , $description , $image , $user_id , $categoryId , $wikiId]);
     
             $deleteSql = "DELETE FROM `wiki_tag` WHERE `wiki_id` = ?";
             $deleteStmt = $conn->prepare($deleteSql);
@@ -172,25 +155,17 @@ class WikiDAO
             u.profil AS user_profil,
             c.name AS category_name,
             GROUP_CONCAT(t.name SEPARATOR '#') AS tag_names
-        FROM 
-            Wiki w
-        JOIN 
-            User u ON w.user_id = u.id
-        JOIN 
-            category c ON w.category_id = c.id
-        JOIN 
-            Wiki_Tag wt ON w.id = wt.wiki_id
-        JOIN 
-            Tag t ON wt.tag_id = t.id 
-        WHERE 
-            w.id = ?
-        GROUP BY 
-            w.id;
+        FROM Wiki w
+        JOIN User u ON w.user_id = u.id
+        JOIN category c ON w.category_id = c.id
+        JOIN Wiki_Tag wt ON w.id = wt.wiki_id
+        JOIN Tag t ON wt.tag_id = t.id 
+        WHERE w.id = ?
+        GROUP BY w.id;
         
             ";
             $stmt = $conn->prepare($sql);
-            $stmt->bindParam(1, $wikiId);
-            $stmt->execute();
+            $stmt->execute([$wikiId]);
             $result = $stmt->fetch(\PDO::FETCH_ASSOC);
 
             return $result;
@@ -205,8 +180,7 @@ class WikiDAO
             $conn = Database::getInstance()->getConnection();
             $sql = "SELECT u.email FROM `wiki` w JOIN `user` u ON w.user_id = u.id WHERE w.id = ?";
             $stmt = $conn->prepare($sql);
-            $stmt->bindParam(1, $wikiId);
-            $stmt->execute();
+            $stmt->execute([$wikiId]);
             $result = $stmt->fetch(\PDO::FETCH_ASSOC);
 
             return $result['email'] ?? null;
@@ -221,8 +195,7 @@ class WikiDAO
             $conn = Database::getInstance()->getConnection();
             $sql = 'DELETE FROM `wiki` WHERE id = ?';
             $stmt = $conn->prepare($sql);
-            $stmt->bindParam(1, $wikiId);
-            $stmt->execute();
+            $stmt->execute([$wikiId]);
         }
         catch (\PDOException $e) {
             echo $e->getMessage();

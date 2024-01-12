@@ -15,15 +15,7 @@ class UserDAO
 
             $sql = "INSERT INTO `user` (`fullname`, `address`, `profil`, `email`, `password`, `role_id`) VALUES(?, ?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($sql);
-
-            $stmt->bindParam(1, $fullname);
-            $stmt->bindParam(2, $address);
-            $stmt->bindParam(3, $profil);
-            $stmt->bindParam(4, $email);
-            $stmt->bindParam(5, $password);
-            $stmt->bindParam(6, $roleId);
-
-            $stmt->execute();
+            $stmt->execute([$fullname , $address , $profil , $email , $password , $roleId]);
         } catch (\PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
@@ -36,9 +28,7 @@ class UserDAO
 
             $sql = "SELECT * FROM `user` WHERE `email` = ?";
             $stmt = $conn->prepare($sql);
-            $stmt->bindParam(1, $email);
-            $stmt->execute();
-
+            $stmt->execute([$email]);
             $user = $stmt->fetch(\PDO::FETCH_ASSOC);
 
             return $user;
@@ -68,8 +58,7 @@ class UserDAO
         $conn = Database::getInstance()->getConnection();
         $sql = "SELECT u.email FROM `wiki` w JOIN `user` u ON w.user_id = u.id WHERE w.id = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bindParam(1, $wikiId);
-        $stmt->execute();
+        $stmt->execute([$wikiId]);
         $result = $stmt->fetch(\PDO::FETCH_ASSOC);
 
         return $result['email'] ?? null;

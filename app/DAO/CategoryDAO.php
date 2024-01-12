@@ -16,8 +16,7 @@ class CategoryDAO
 
             $sql = "INSERT INTO `category` (`name`) VALUES (?)";
             $stmt = $conn->prepare($sql);
-            $stmt->bindParam(1, $category);
-            $stmt->execute();
+            $stmt->execute([$category]);
         } catch (\PDOException $e) {
             throw new \PDOException($e->getMessage(), (int)$e->getCode());
         }
@@ -43,8 +42,7 @@ class CategoryDAO
 
             $sql = "SELECT `id` FROM `category` WHERE `name` = ?";
             $stmt = $conn->prepare($sql);
-            $stmt->bindParam(1, $categoryName);
-            $stmt->execute();
+            $stmt->execute([$categoryName]);
 
             $result = $stmt->fetch(\PDO::FETCH_ASSOC);
 
@@ -65,11 +63,8 @@ class CategoryDAO
 
             $sql = "SELECT * FROM `category` WHERE `id` = ?";
             $stmt = $conn->prepare($sql);
-            $stmt->bindParam(1, $categoryid);
-            $stmt->execute();
-
+            $stmt->execute([$categoryid]);
             $result = $stmt->fetch(\PDO::FETCH_ASSOC);
-
             return $result;
 
         } catch (\PDOException $e) {
@@ -84,9 +79,7 @@ class CategoryDAO
 
             $sql = "UPDATE `category` SET `name` = ? WHERE `id` = ?";
             $stmt = $conn->prepare($sql);
-            $stmt->bindParam(1, $newCategoryName);
-            $stmt->bindParam(2, $categoryId);
-            $stmt->execute();
+            $stmt->execute([$newCategoryName , $categoryId]);
             return true;
         } catch (\PDOException $e) {
             throw new \PDOException($e->getMessage(), (int)$e->getCode());
