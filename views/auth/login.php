@@ -138,13 +138,56 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
-
-
-  
-
-
 </body>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const form = document.getElementById("form");
+
+    form.addEventListener("submit", function(event) {
+        let valid = true;
+
+        document.querySelectorAll(".text-danger").forEach(function(error) {
+            error.textContent = "";
+        });
+
+        document.querySelectorAll(".error").forEach(function(element) {
+            element.classList.remove("error");
+        });
+
+        // Validation email
+        const emailInput = document.getElementById("email");
+        const emailError = document.querySelector(".email-error");
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        const email = emailInput.value.trim();
+        if (!email) {
+            emailError.textContent = "Email is required";
+            emailInput.style.border = "2px solid red";
+            valid = false;
+        } else if (!emailPattern.test(email)) {
+            emailError.textContent = "Invalid email format";
+            emailInput.style.border = "2px solid red";
+            valid = false;
+        }
+
+        // Validation password
+        const passwordInput = document.getElementById("password");
+        const passwordError = document.querySelector(".password-error");
+        const password = passwordInput.value.trim();
+
+        if (!password) {
+            passwordError.textContent = "Password is required";
+            passwordInput.style.border = "2px solid red";
+            valid = false;
+        }
+
+        if (!valid) {
+            event.preventDefault();
+        }
+    });
+});
+</script>
 
 
 <script>

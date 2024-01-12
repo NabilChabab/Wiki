@@ -118,7 +118,7 @@
                                     <div class="tag-container" id="tag-container"></div>
                                     <label for="tags">Choose Your Tags</label>
                                     <select name="tags[]" id="tags" multiple class="select2">
-                                        <option value="option1" default><?= $wiki['tag_names'] ?></option>
+                                        <option value="option1" selected><?= $wiki['tag_names'] ?></option>
                                         <?php foreach($tags as $tags): ?>
                                             <option value="<?= $tags['id'] ?>">
                                             <?= $tags['name'] ?>

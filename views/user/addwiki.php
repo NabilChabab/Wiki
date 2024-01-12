@@ -66,7 +66,7 @@
                     if (isset($_SESSION['role']) == 2) {
                         echo '<li class="dropdown"><a href=""><img src="/Wiki/public/img/' . $_SESSION['user_image'] . '"style="width:45px;height:45px;border-radius:50%;margin-left:60%;"></a>
             <ul>
-            <li><a href="#">View Profil</a></li>
+            <li><a href="profil">View Profil</a></li>
             <li><a href="logout">Logout</a></li>
           </ul>
             </li>';
