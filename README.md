@@ -53,8 +53,8 @@ Wiki is a content management system designed to provide an efficient backend for
 ### Frontend
 
 - HTML5
-- CSS Framework
-- JavaScript
+- CSS Framework Bootstrap Framework
+- JavaScript / AJAX
 
 ### Backend
 
@@ -71,7 +71,7 @@ Wiki is a content management system designed to provide an efficient backend for
 ## Getting Started
 
 1. Clone the repository.
-2. Set up the database using [database.sql](database.sql).
+2. Set up the database using [script.sql](script.sql).
 3. Configure your environment variables.
 4. Run the application.
 
@@ -86,4 +86,4 @@ This project is licensed under the [MIT License](LICENSE).
 ## Screenshots
 
 ![Screenshot 1](public/img/screen1.png)
-![Screenshot 2](screenshots/screenshot2.png)
+![Screenshot 2](public/img/screen2.png)
