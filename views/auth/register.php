@@ -13,16 +13,17 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+        <link href="/Wiki/public/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/Wiki/public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/Wiki/public/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/Wiki/public/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/Wiki/public/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/Wiki/public/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <link href="/Wiki/public/css/style.css" rel="stylesheet">
 </head>
 <style>
-    .bg {
-        width: 100%;
-        height: 100vh;
-        object-fit: cover;
-        position: absolute;
-    }
-
-
     .bg-glass {
         background-color: hsla(0, 0%, 100%, 0.9) !important;
         backdrop-filter: saturate(200%) blur(25px);
@@ -87,9 +88,9 @@
 </style>
 
 <body class="bg-dark">
-    <img src="/Wiki/public/img/gallery-10.jpg" class="bg">
-    <section class="background-radial-gradient overflow-hidden">
-        <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+<section id="hero">
+
+<div class="container ">
             <div class="row gx-lg-5 align-items-center mb-5">
                 <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
                     <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
@@ -157,7 +158,7 @@
                                 <button type="submit" class="btn btn-primary btn-block mb-4 col-12" name="signup">
                                     Register
                                 </button>
-                                <a type="submit" class="mb-4 col-12 register" href="signin">
+                                <a type="submit" class="mb-4 col-12 register text-primary" href="signin">
                                     Already have an account Login
                                 </a>
 
@@ -185,7 +186,25 @@
                 </div>
             </div>
         </div>
-    </section>
+
+<svg class="hero-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  viewBox="0 24 150 28 " preserveAspectRatio="none">
+  <defs>
+    <path id="wave-path" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z">
+  </defs>
+  <g class="wave1">
+    <use xlink:href="#wave-path" x="50" y="3" fill="rgba(255,255,255, .1)">
+  </g>
+  <g class="wave2">
+    <use xlink:href="#wave-path" x="50" y="0" fill="rgba(255,255,255, .2)">
+  </g>
+  <g class="wave3">
+    <use xlink:href="#wave-path" x="50" y="9" fill="#fff">
+  </g>
+</svg>
+
+</section>
+
 
     <script src="/Wiki/public/js/login.js"></script>
     <script src="/Wiki/public/js/main.js"></script>

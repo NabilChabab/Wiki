@@ -102,7 +102,12 @@
                             
                         </div>
                         <div class="nav tag-cloud">
-                            <p style="color:blue"><?= $wiki['tag_names']?></p>
+                        <?php
+                        $selectedTags = explode('#', $wiki['tag_names']);
+
+                          foreach($selectedTags as $tag): ?>
+                            <a style="margin-right: 5px;" href="#"><?= $tag ?></a>
+                          <?php endforeach; ?>
                         </div>
                     </article>
                 </div>

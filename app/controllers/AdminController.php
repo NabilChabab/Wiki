@@ -1,13 +1,14 @@
 <?php
 
 namespace App\controllers;
+session_start();
+
 use App\models\UserModel;
 use App\models\CategoryModel;
 use App\models\TagModel;
 use App\models\WikiModel;
 
 require_once '../../vendor/autoload.php';
-
 
 class AdminController
 {
@@ -17,8 +18,12 @@ class AdminController
         include '../../views/admin/home.php';
         exit();
     }
-    
+
     public function allusers(){
+        if (empty($_SESSION['role']) || $_SESSION['role'] !== 1) {
+            include '../../views/user/403.php';
+            die();
+        }
         $users = UserModel::getAllUsers();
         include '../../views/admin/home.php';
         exit();
@@ -53,7 +58,6 @@ class AdminController
             if (isset($_GET['id'])) {
                 $wikiId = base64_decode($_GET['id']);
                 $status = $_POST['status'];
-                var_dump($wikiId, $status);
                 WikiModel::updateWiki($wikiId, $status);
                 header('Location:wikis');
             } else {

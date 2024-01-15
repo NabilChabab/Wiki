@@ -104,9 +104,9 @@ class HomeController
         $upload_image = "" . $file_name;
         $description = $_POST['description'];
         $user_id = $_SESSION['user_id'];
-        $resulr = move_uploaded_file($file_temp, $upload_image);
+        $result = move_uploaded_file($file_temp, $upload_image);
 
-        if ($resulr) {
+        if ($result) {
             WikiModel::updateWikisForAuthor($wikiId, $title, $category, $tags, $upload_image, $description, $user_id);
             header("Location: home"); 
             exit();
@@ -150,6 +150,11 @@ class HomeController
         }
 
        
+    }
+
+    public function error(){
+        include '../../views/user/404.php';
+        exit();
     }
    
 }

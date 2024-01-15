@@ -113,19 +113,22 @@
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
-
                                 <div class="form-group">
-                                    <div class="tag-container" id="tag-container"></div>
-                                    <label for="tags">Choose Your Tags</label>
-                                    <select name="tags[]" id="tags" multiple class="select2">
-                                        <option value="option1" selected><?= $wiki['tag_names'] ?></option>
-                                        <?php foreach($tags as $tags): ?>
-                                            <option value="<?= $tags['id'] ?>">
-                                            <?= $tags['name'] ?>
-                                            </option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
+    <div class="tag-container" id="tag-container"></div>
+    <label for="tags">Choose Your Tags</label>
+    <select name="tags[]" id="tags" multiple class="select2">
+        <?php
+        // Split the concatenated tag_names into an array
+        $selectedTags = explode('#', $wiki['tag_names']);
+
+        // Iterate through all available tags
+        foreach($tags as $tag): ?>
+            <option value="<?= $tag['id'] ?>" <?= in_array($tag['name'], $selectedTags) ? 'selected' : '' ?>>
+                <?= $tag['name'] ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+</div>
 
                                 <div class="form-group">
                                     <textarea name="description" id="description" cols="30" rows="10"

@@ -6,9 +6,7 @@ use App\database\Database;
 use App\DAO\TagDAO;
 
 require '../../vendor/autoload.php';
-require '../../vendor/phpmailer/phpmailer/src/PHPMailer.php';
-require '../../vendor/phpmailer/phpmailer/src/SMTP.php';
-use PHPMailer;
+
 
 class WikiDAO
 {
@@ -28,9 +26,11 @@ class WikiDAO
 
             $sql = "INSERT INTO `wiki` (`title`, `description`, `image`, `user_id`, `category_id`) VALUES (?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($sql);
-            $stmt->execute([$title , $description , $image , $user_id , $categoryId]);
+            $result =  $stmt->execute([$title , $description , $image , $user_id , $categoryId]);
             $lastid = $conn->lastInsertId();
-            self::addTagsForWiki($lastid, $tags);
+            if($result){
+                self::addTagsForWiki($lastid, $tags);
+            }
         } catch (\PDOException $e) {
             echo $e->getMessage();
             return false;
@@ -101,14 +101,7 @@ class WikiDAO
             $sql = "UPDATE `wiki` SET `status` = ? WHERE `id` = ?";
             $stmt = $conn->prepare($sql);
             $stmt->execute([$status , $wikiId]);
-            $userEmail = self::getUserEmailByWikiId($wikiId);
-
-            if ($userEmail) {
-                $subject = 'Wiki Status Update';
-                $message = "Your wiki status has been updated to $status.";
-
-                self::sendEmail($userEmail, $subject, $message);
-            }
+        
         } catch (\PDOException $e) {
             echo $e->getMessage();
         }
@@ -118,6 +111,7 @@ class WikiDAO
     {
         try {
             $conn = Database::getInstance()->getConnection();
+            $conn->beginTransaction();
     
             $categoryInfo = CategoryDAO::getCategoryId($category);
     
@@ -138,6 +132,8 @@ class WikiDAO
             $deleteStmt->execute();
     
             self::addTagsForWiki($wikiId, $tags);
+            $conn->commit();
+            return true;
         } catch (\PDOException $e) {
             echo $e->getMessage();
             return false;
@@ -199,31 +195,6 @@ class WikiDAO
         }
         catch (\PDOException $e) {
             echo $e->getMessage();
-        }
-    }
-
-    public static function sendEmail($to, $subject, $message)
-    {
-        $mail = new PHPMailer\PHPMailer\PHPMailer();
-        $mail->isSMTP();
-        $mail->Host = 'smtp.example.com';
-        $mail->SMTPAuth = true;
-        $mail->Username = 'your_username';
-        $mail->Password = 'your_password';
-        $mail->SMTPSecure = 'tls';
-        $mail->Port = 587;
-
-        $mail->setFrom('nabil.chababnabil@gmail.com', 'Your Name');
-        $mail->addAddress($to);
-
-        $mail->isHTML(true);
-        $mail->Subject = $subject;
-        $mail->Body = $message;
-
-        if ($mail->send()) {
-            echo 'Email sent successfully';
-        } else {
-            echo 'Error: ' . $mail->ErrorInfo;
         }
     }
 

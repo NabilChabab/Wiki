@@ -24,6 +24,7 @@ $router->setRoutes([
         'update'=> ['HomeController','updatewiki'],
         'delete'=> ['HomeController','deletewiki'],
         'deletewk'=> ['HomeController','deletewikiForAdmin'],
+        '404'=> ['HomeController','error'],
       
     ],
     'POST' => [
@@ -65,7 +66,7 @@ if (isset($_GET['url'])) {
                 $controller->index();
             }
         } else {
-            throw new Exception('Route not found.');
+            header('location:404');
         }
     } catch (Exception $e) {
         echo 'Caught exception: ', $e->getMessage(), "\n";

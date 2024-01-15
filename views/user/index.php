@@ -74,7 +74,7 @@
             </ul>
           </li>
           <li><a class="nav-link scrollto" href="#gallery">Wikis</a></li>
-          <li><a class="nav-link scrollto" href="#team">About us</a></li>
+          <li><a class="nav-link scrollto" href="#testimonials">About us</a></li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
           <?php
           if (isset($_SESSION['role']) == 2) {
@@ -576,23 +576,41 @@
       </div>
     </div>
     <div class="modal" id="successModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
+      <div class="modal-dialog">
+          <div class="modal-content">
 
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title text-success">Success!</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
+              <!-- Modal Header -->
+              <div class="modal-header">
+                  <h4 class="modal-title text-success">Success!</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
 
-            <!-- Modal Body -->
-            <div class="modal-body text-dark">
-                Your Wiki has been added successfully! Please wait until the support team accepts your wiki. It may take a few hours for the response.
-            </div>
+              <!-- Modal Body -->
+              <div class="modal-body text-dark">
+                  Your Wiki has been added successfully! Please wait until the support team accepts your wiki. It may take a few hours for the response.
+              </div>
 
-        </div>
+          </div>
+      </div>
     </div>
-</div>
+    <div class="modal" id="statusModal">
+      <div class="modal-dialog">
+          <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header">
+                  <h4 class="modal-title text-success">Success!</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+
+              <!-- Modal Body -->
+              <div class="modal-body text-dark">
+                  Your Wiki has been added successfully! Please wait until the support team accepts your wiki. It may take a few hours for the response.
+              </div>
+
+          </div>
+      </div>
+    </div>
     <div class="container">
       <div class="copyright">
         &copy; Copyright <strong><span>Bootslander</span></strong>. All Rights Reserved
@@ -634,6 +652,7 @@ if (isset($_SESSION['wiki_added']) && $_SESSION['wiki_added']) {
     unset($_SESSION['wiki_added']);
 }
 ?>
+
 
 </body>
 
